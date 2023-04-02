@@ -17,6 +17,8 @@ public class WorldSwitcher : MonoBehaviour
     {
         // This is currently starting the game in the safe world
         isSafeWorld = true;
+        safeWorld.SetActive(true);
+        dangerWorld.SetActive(false);
     }
 
     private void Update()
