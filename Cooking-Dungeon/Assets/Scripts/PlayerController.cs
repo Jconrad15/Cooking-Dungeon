@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private int floorSize = 1;
+
     private KeyCode forward = KeyCode.W;
     private KeyCode backward = KeyCode.S;
 
@@ -80,7 +81,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        isMoving = true;
         KeyCode nextAction = actions.Dequeue();
 
         if (nextAction == forward)
@@ -115,25 +115,34 @@ public class PlayerController : MonoBehaviour
 
     private void MoveForward()
     {
-        Vector3 endLocation = transform.position + transform.forward;
+        bool canMove = CanMoveDirection(Direction.Forward);
+        if (canMove == false)
+        { return; }
+        Vector3 endLocation = transform.position + (floorSize * transform.forward);
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
     private void MoveBackward()
     {
-        Vector3 endLocation = transform.position - transform.forward;
+        bool canMove = CanMoveDirection(Direction.Backward);
+        if (canMove == false) { return; }
+        Vector3 endLocation = transform.position - (floorSize * transform.forward);
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
     private void MoveLeft()
     {
-        Vector3 endLocation = transform.position - transform.right;
+        bool canMove = CanMoveDirection(Direction.Left);
+        if (canMove == false) { return; }
+        Vector3 endLocation = transform.position - (floorSize * transform.right);
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
     private void MoveRight()
     {
-        Vector3 endLocation = transform.position + transform.right;
+        bool canMove = CanMoveDirection(Direction.Right);
+        if (canMove == false) { return; }
+        Vector3 endLocation = transform.position + (floorSize * transform.right);
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
@@ -152,6 +161,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator LerpToPosition(
         Vector3 startLocation, Vector3 endLocation)
     {
+        isMoving = true;
+
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
@@ -174,6 +185,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator LerpToRotation(
         Quaternion startRotation, Quaternion endRotation)
     {
+        isMoving = true;
+
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
@@ -191,6 +204,55 @@ public class PlayerController : MonoBehaviour
         // Hard set end location incase things end weirdly
         transform.rotation = endRotation;
         isMoving = false;
+    }
+
+    /// <summary>
+    /// Check if a wall is in the provided direction.
+    /// </summary>
+    /// <param name="d"></param>
+    /// <returns></returns>
+    private bool CanMoveDirection(Direction d)
+    {
+        Vector3 current = transform.position;
+        // The camera is 0.5 above ground
+        current.y += 0.5f;
+        Vector3 target = current;
+
+        switch (d)
+        {
+            case Direction.Forward:
+                target += (floorSize * transform.forward);
+                //Debug.DrawRay(current, transform.forward, Color.green, 3);
+                break;
+
+            case Direction.Backward:
+                target -= (floorSize * transform.forward);
+                //Debug.DrawRay(current, -transform.forward, Color.green, 3);
+                break;
+
+            case Direction.Left:
+                target -= (floorSize * transform.right);
+                //Debug.DrawRay(current, -transform.right, Color.green, 3);
+                break;
+
+            case Direction.Right:
+                target += (floorSize * transform.right);
+                //Debug.DrawRay(current, transform.right, Color.green, 3);
+                break;
+        }
+
+        if (Physics.Linecast(current, target, out RaycastHit hitInfo))
+        {
+            GameObject other = hitInfo.collider.gameObject;
+            other.TryGetComponent(out Wall wall);
+            if (wall != null)
+            {
+                //Debug.Log("Blocked by wall");
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }
