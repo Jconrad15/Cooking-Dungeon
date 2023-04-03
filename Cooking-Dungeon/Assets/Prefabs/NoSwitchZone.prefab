@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7151194961196227360}
   - component: {fileID: 2265426450050626863}
   - component: {fileID: 8872736706161220675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NoSwitchZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

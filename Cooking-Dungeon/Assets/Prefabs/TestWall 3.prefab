@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3409296865457356571}
   - component: {fileID: 3853814274456931831}
   - component: {fileID: 2748232385345471987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4940194942171283358}
   - component: {fileID: 7047862182490583179}
   - component: {fileID: 7618090672335505340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Quad (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3602597450874679918}
   - component: {fileID: 5245583171485790268}
   - component: {fileID: 7957815280549746420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Quad (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 4658008911975564759}
   - component: {fileID: 7717799809570759205}
   - component: {fileID: 2727254565845141506}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 2514482353282399934}
   - component: {fileID: 2969387796850268706}
   - component: {fileID: 8371909728257255679}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Quad (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 7154791128568341430}
   - component: {fileID: 7144083024872909799}
   - component: {fileID: 5914038524864626725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestWall 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

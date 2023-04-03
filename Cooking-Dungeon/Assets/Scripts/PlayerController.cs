@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
     private Action<NPC> cbOnStartTalkToNPC;
 
+    private LayerMask movementMask;
+
     private void Start()
     {
         // This is currently starting the game in the safe world
@@ -52,6 +54,8 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
 
         actions = new Queue<KeyCode>();
+        string[] layerNames = new string[2] { "Wall", "NPC" };
+        movementMask = LayerMask.GetMask(layerNames);
     }
 
     private void Update()
@@ -378,19 +382,16 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check for colliders in the target location
-        if (Physics.Linecast(current, target, out RaycastHit hitInfo))
+        if (Physics.Linecast(current, target, out RaycastHit hitInfo, movementMask))
         {
             GameObject other = hitInfo.collider.gameObject;
             // Try to get components in other gameobject
-            other.TryGetComponent(out Wall wall);
-            other.TryGetComponent(out NPC npc);
-
-            if (wall != null)
+            if (other.TryGetComponent(out Wall wall))
             {
                 Debug.Log("Blocked by wall");
                 return false;
             }
-            if (npc != null)
+            if (other.TryGetComponent(out NPC npc))
             {
                 cbOnStartTalkToNPC(npc);
                 Debug.Log("TalkToNPC");
