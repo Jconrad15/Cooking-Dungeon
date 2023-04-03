@@ -15,18 +15,32 @@ public class PlayerController : MonoBehaviour
     private KeyCode turnLeft = KeyCode.Q;
     private KeyCode turnRight = KeyCode.E;
 
+    private KeyCode flip = KeyCode.Space;
+
+    [SerializeField]
+    private GameObject surfaceWorld;
+    [SerializeField]
+    private GameObject dungeonWorld;
+
+    private bool isOnSurface;
+    private float surfaceOffset = 0.5f;
+    private float dungeonOffset = -0.5f;
+    private float currentOffset;
+
     private Queue<KeyCode> actions;
 
     private bool isMoving;
 
-    private float lerpDuration = 0.2f;
-
-    private WorldSwitcher worldSwitcher;
+    private float moveDuration = 0.2f;
+    private float flipDuration = 1f;
 
     private void Start()
     {
+        // This is currently starting the game in the safe world
+        isOnSurface = true;
+        currentOffset = surfaceOffset;
+
         actions = new Queue<KeyCode>();
-        worldSwitcher = GetComponent<WorldSwitcher>();
     }
 
     private void Update()
@@ -44,6 +58,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void CheckForInput()
     {
+        if (Input.GetKeyDown(flip))
+        {
+            actions.Enqueue(flip);
+        }
+
         if (Input.GetKeyDown(forward))
         {
             actions.Enqueue(forward);
@@ -110,6 +129,10 @@ public class PlayerController : MonoBehaviour
         {
             TurnRight();
         }
+        else if (nextAction == flip)
+        {
+            SwitchWorlds();
+        }
         else
         {
             Debug.LogError("Why is there no action??");
@@ -161,18 +184,54 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(LerpToRotation(transform.rotation, endRotation));
     }
 
+    private void SwitchWorlds()
+    {
+        bool canSwitch = CanSwitchHere();
+        if (canSwitch == false)
+        {
+            Debug.Log("Cannot switch here");
+            return;
+        }
+
+        StartCoroutine(LerpToFlip());
+    }
+
+    private bool CanSwitchHere()
+    {
+        Vector3 currentLocation = transform.position;
+        currentLocation.y += currentOffset;
+        float radius = 0.2f;
+
+        int maxColliders = 2;
+        Collider[] hitColliders = new Collider[maxColliders];
+        int numColliders = Physics.OverlapSphereNonAlloc(
+            currentLocation, radius, hitColliders);
+        for (int i = 0; i < numColliders; i++)
+        {
+            // Check if overlaping collider 
+            hitColliders[i].TryGetComponent(out NoSwitchZone noSwitchZone);
+            if (noSwitchZone != null)
+            {
+                // A no switch zone is present
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private IEnumerator LerpToPosition(
         Vector3 startLocation, Vector3 endLocation)
     {
         isMoving = true;
 
         float timeElapsed = 0;
-        while (timeElapsed < lerpDuration)
+        while (timeElapsed < moveDuration)
         {
             Vector3 newPos = Vector3.Lerp(
                 startLocation,
                 endLocation,
-                timeElapsed / lerpDuration);
+                timeElapsed / moveDuration);
 
             timeElapsed += Time.deltaTime;
 
@@ -191,12 +250,12 @@ public class PlayerController : MonoBehaviour
         isMoving = true;
 
         float timeElapsed = 0;
-        while (timeElapsed < lerpDuration)
+        while (timeElapsed < moveDuration)
         {
             Quaternion newRotation = Quaternion.Lerp(
                 startRotation,
                 endRotation,
-                timeElapsed / lerpDuration);
+                timeElapsed / moveDuration);
 
             timeElapsed += Time.deltaTime;
 
@@ -209,6 +268,49 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
     }
 
+    private IEnumerator LerpToFlip()
+    {
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = transform.rotation * Quaternion.Euler(0, 0, 180f);
+
+        isMoving = true;
+
+        float timeElapsed = 0;
+        while (timeElapsed < flipDuration)
+        {
+            Quaternion newRotation = Quaternion.Lerp(
+                startRotation,
+                endRotation,
+                timeElapsed / flipDuration);
+
+            timeElapsed += Time.deltaTime;
+
+            transform.rotation = newRotation;
+            yield return null;
+        }
+
+        // Hard set end location incase things end weirdly
+        transform.rotation = endRotation;
+        Vector3 roundedPos = transform.position;
+        roundedPos.x = Mathf.RoundToInt(roundedPos.x);
+        roundedPos.y = Mathf.RoundToInt(roundedPos.y);
+        roundedPos.z = Mathf.RoundToInt(roundedPos.z);
+        transform.position = roundedPos;
+        isMoving = false;
+
+        // Switch surface data
+        if (isOnSurface)
+        {
+            currentOffset = dungeonOffset;
+        }
+        else
+        {
+            currentOffset = surfaceOffset;
+        }
+        // Switch boolean
+        isOnSurface = !isOnSurface;
+    }
+
     /// <summary>
     /// Check if a wall is in the provided direction.
     /// </summary>
@@ -217,30 +319,29 @@ public class PlayerController : MonoBehaviour
     private bool CanMoveDirection(Direction d)
     {
         Vector3 current = transform.position;
-        current.y += worldSwitcher.currentOffset;
-        Debug.Log(worldSwitcher.currentOffset);
+        current.y += currentOffset;
         Vector3 target = current;
 
         switch (d)
         {
             case Direction.Forward:
                 target += (floorSize * transform.forward);
-                Debug.DrawRay(current, transform.forward, Color.green, 3);
+                //Debug.DrawRay(current, transform.forward, Color.green, 3);
                 break;
 
             case Direction.Backward:
                 target -= (floorSize * transform.forward);
-                Debug.DrawRay(current, -transform.forward, Color.green, 3);
+                //Debug.DrawRay(current, -transform.forward, Color.green, 3);
                 break;
 
             case Direction.Left:
                 target -= (floorSize * transform.right);
-                Debug.DrawRay(current, -transform.right, Color.green, 3);
+                //Debug.DrawRay(current, -transform.right, Color.green, 3);
                 break;
 
             case Direction.Right:
                 target += (floorSize * transform.right);
-                Debug.DrawRay(current, transform.right, Color.green, 3);
+                //Debug.DrawRay(current, transform.right, Color.green, 3);
                 break;
         }
 
