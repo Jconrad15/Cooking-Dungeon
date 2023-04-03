@@ -21,9 +21,12 @@ public class PlayerController : MonoBehaviour
 
     private float lerpDuration = 0.2f;
 
+    private WorldSwitcher worldSwitcher;
+
     private void Start()
     {
         actions = new Queue<KeyCode>();
+        worldSwitcher = GetComponent<WorldSwitcher>();
     }
 
     private void Update()
@@ -214,30 +217,30 @@ public class PlayerController : MonoBehaviour
     private bool CanMoveDirection(Direction d)
     {
         Vector3 current = transform.position;
-        // The camera is 0.5 above ground
-        current.y += 0.5f;
+        current.y += worldSwitcher.currentOffset;
+        Debug.Log(worldSwitcher.currentOffset);
         Vector3 target = current;
 
         switch (d)
         {
             case Direction.Forward:
                 target += (floorSize * transform.forward);
-                //Debug.DrawRay(current, transform.forward, Color.green, 3);
+                Debug.DrawRay(current, transform.forward, Color.green, 3);
                 break;
 
             case Direction.Backward:
                 target -= (floorSize * transform.forward);
-                //Debug.DrawRay(current, -transform.forward, Color.green, 3);
+                Debug.DrawRay(current, -transform.forward, Color.green, 3);
                 break;
 
             case Direction.Left:
                 target -= (floorSize * transform.right);
-                //Debug.DrawRay(current, -transform.right, Color.green, 3);
+                Debug.DrawRay(current, -transform.right, Color.green, 3);
                 break;
 
             case Direction.Right:
                 target += (floorSize * transform.right);
-                //Debug.DrawRay(current, transform.right, Color.green, 3);
+                Debug.DrawRay(current, transform.right, Color.green, 3);
                 break;
         }
 

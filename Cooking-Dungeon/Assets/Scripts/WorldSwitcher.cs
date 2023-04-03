@@ -11,14 +11,16 @@ public class WorldSwitcher : MonoBehaviour
     [SerializeField]
     private GameObject dangerWorld;
 
-    private bool isSafeWorld;
+    private bool isOnSurface;
+    private float surfaceOffset = 0.5f;
+    private float dungeonOffset = -0.5f;
+    public float currentOffset;
 
     private void Start()
     {
         // This is currently starting the game in the safe world
-        isSafeWorld = true;
-        safeWorld.SetActive(true);
-        dangerWorld.SetActive(false);
+        isOnSurface = true;
+        currentOffset = surfaceOffset;
     }
 
     private void Update()
@@ -43,25 +45,29 @@ public class WorldSwitcher : MonoBehaviour
             return;
         }
 
-        if (isSafeWorld)
+        FlipCharacter();
+
+        // Switch boolean
+        isOnSurface = !isOnSurface;
+    }
+
+    private void FlipCharacter()
+    {
+        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 180f);
+        if (isOnSurface)
         {
-            dangerWorld.SetActive(true);
-            safeWorld.SetActive(false);
+            currentOffset = dungeonOffset;
         }
         else
         {
-            safeWorld.SetActive(true);
-            dangerWorld.SetActive(false);
+            currentOffset = surfaceOffset;
         }
-
-        // Switch boolean
-        isSafeWorld = !isSafeWorld;
     }
 
     private bool CanSwitchHere()
     {
         Vector3 currentLocation = transform.position;
-        currentLocation.y += 0.5f;
+        currentLocation.y += currentOffset;
         float radius = 0.2f;
 
         int maxColliders = 2;
