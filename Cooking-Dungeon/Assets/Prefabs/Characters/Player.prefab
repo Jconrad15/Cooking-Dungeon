@@ -459,6 +459,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4626006928875676668}
   - component: {fileID: 7833282810004954035}
+  - component: {fileID: 8102328394211994608}
+  - component: {fileID: 1920223872610848141}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -482,7 +484,7 @@ Transform:
   - {fileID: 2844456225521463698}
   - {fileID: 7598307463979596435}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7833282810004954035
 MonoBehaviour:
@@ -498,6 +500,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surfaceWorld: {fileID: 0}
   dungeonWorld: {fileID: 0}
+--- !u!114 &8102328394211994608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588452150502137977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc57a015bb719a54f8d44204c3e2c968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  currentHealth: 0
+--- !u!114 &1920223872610848141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588452150502137977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebeef6bc774483429f3d605bed73106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageDealt: 1
+  combatantName: 
+  health: {fileID: 8102328394211994608}
 --- !u!1 &9077519694221261816
 GameObject:
   m_ObjectHideFlags: 0

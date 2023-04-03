@@ -5,7 +5,7 @@ using TMPro;
 
 public class DialogueDisplayer : MonoBehaviour
 {
-    private KeyCode nextButton = KeyCode.R;
+    private KeyCode nextButton = KeyCode.Space;
 
     [SerializeField]
     private TextMeshProUGUI text;
