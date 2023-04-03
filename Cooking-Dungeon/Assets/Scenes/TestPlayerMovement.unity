@@ -13899,7 +13899,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2070508109}
-  - component: {fileID: 2070508108}
   m_Layer: 0
   m_Name: DialogueDisplayer
   m_TagString: Untagged
@@ -13907,18 +13906,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2070508108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070508107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9791ded6e704f344493900e554bf4a15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2070508109
 Transform:
   m_ObjectHideFlags: 0
@@ -14512,6 +14499,18 @@ PrefabInstance:
     - target: {fileID: 1970892069674571984, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Hello
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: I'm Jake
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

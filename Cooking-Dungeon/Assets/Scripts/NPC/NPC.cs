@@ -5,9 +5,14 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     PlayerController playerController;
+    DialogueDisplayer dialogueDisplayer;
+
+    [SerializeField]
+    private string[] dialogue; 
 
     private void Start()
     {
+        dialogueDisplayer = FindAnyObjectByType<DialogueDisplayer>();
         playerController = FindAnyObjectByType<PlayerController>();
         playerController.RegisterOnStartTalkToNPC(OnStartTalkToNPC);
     }
