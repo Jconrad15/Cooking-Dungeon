@@ -27,6 +27,7 @@ public class SoundController : MonoBehaviour
 
     private void OnMove()
     {
+        Debug.Log("move");
         audioSource.PlayOneShot(move);
     }
 
