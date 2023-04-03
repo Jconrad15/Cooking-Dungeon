@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,10 @@ public class PlayerController : MonoBehaviour
 
     private float moveDuration = 0.2f;
     private float flipDuration = 1f;
+
+    private Action cbOnMove;
+    private Action cbOnRotate;
+    private Action cbOnFlip;
 
     private void Start()
     {
@@ -142,9 +147,9 @@ public class PlayerController : MonoBehaviour
     private void MoveForward()
     {
         bool canMove = CanMoveDirection(Direction.Forward);
-        if (canMove == false)
-        { return; }
+        if (canMove == false) { return; }
         Vector3 endLocation = transform.position + (floorSize * transform.forward);
+        cbOnMove?.Invoke();
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
@@ -153,6 +158,7 @@ public class PlayerController : MonoBehaviour
         bool canMove = CanMoveDirection(Direction.Backward);
         if (canMove == false) { return; }
         Vector3 endLocation = transform.position - (floorSize * transform.forward);
+        cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
@@ -161,6 +167,7 @@ public class PlayerController : MonoBehaviour
         bool canMove = CanMoveDirection(Direction.Left);
         if (canMove == false) { return; }
         Vector3 endLocation = transform.position - (floorSize * transform.right);
+        cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
@@ -169,18 +176,21 @@ public class PlayerController : MonoBehaviour
         bool canMove = CanMoveDirection(Direction.Right);
         if (canMove == false) { return; }
         Vector3 endLocation = transform.position + (floorSize * transform.right);
+        cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
 
     private void TurnLeft()
     {
         Quaternion endRotation = transform.rotation * Quaternion.Euler(0, -90, 0);
+        cbOnRotate?.Invoke();
         StartCoroutine(LerpToRotation(transform.rotation, endRotation));
     }
 
     private void TurnRight()
     {
         Quaternion endRotation = transform.rotation * Quaternion.Euler(0, 90, 0);
+        cbOnRotate?.Invoke();
         StartCoroutine(LerpToRotation(transform.rotation, endRotation));
     }
 
@@ -193,6 +203,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        cbOnFlip?.Invoke();
         StartCoroutine(LerpToFlip());
     }
 
@@ -359,4 +370,33 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    public void RegisterOnMove(Action callbackfunc)
+    {
+        cbOnMove += callbackfunc;
+    }
+
+    public void UnregisterOnMove(Action callbackfunc)
+    {
+        cbOnMove -= callbackfunc;
+    }
+
+    public void RegisterOnRotate(Action callbackfunc)
+    {
+        cbOnRotate += callbackfunc;
+    }
+
+    public void UnregisterOnRotate(Action callbackfunc)
+    {
+        cbOnRotate -= callbackfunc;
+    }
+
+    public void RegisterOnFlip(Action callbackfunc)
+    {
+        cbOnFlip += callbackfunc;
+    }
+
+    public void UnregisterOnFlip(Action callbackfunc)
+    {
+        cbOnFlip -= callbackfunc;
+    }
 }

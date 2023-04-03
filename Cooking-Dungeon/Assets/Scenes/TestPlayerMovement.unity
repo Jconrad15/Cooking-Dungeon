@@ -14526,14 +14526,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6552331993487656022, guid: de547274013048f46a68432663cc1b63, type: 3}
-      propertyPath: safeWorld
-      value: 
-      objectReference: {fileID: 577013287}
-    - target: {fileID: 6552331993487656022, guid: de547274013048f46a68432663cc1b63, type: 3}
-      propertyPath: dangerWorld
-      value: 
-      objectReference: {fileID: 1109723375}
     - target: {fileID: 7588452150502137977, guid: de547274013048f46a68432663cc1b63, type: 3}
       propertyPath: m_Name
       value: Player
