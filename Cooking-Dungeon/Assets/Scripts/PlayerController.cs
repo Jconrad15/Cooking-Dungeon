@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private Queue<KeyCode> actions;
 
     private bool isMoving;
+    private bool movementDisabled;
 
     private float moveDuration = 0.2f;
     private float flipDuration = 1f;
@@ -39,17 +40,27 @@ public class PlayerController : MonoBehaviour
     private Action cbOnRotate;
     private Action cbOnFlip;
 
+    private Action<NPC> cbOnStartTalkToNPC;
+
     private void Start()
     {
         // This is currently starting the game in the safe world
         isOnSurface = true;
         currentOffset = surfaceOffset;
 
+        movementDisabled = false;
+        isMoving = false;
+
         actions = new Queue<KeyCode>();
     }
 
     private void Update()
     {
+        if (movementDisabled)
+        {
+            return;
+        }
+
         CheckForInput();
 
         if (isMoving == false)
@@ -231,6 +242,11 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    public void DisableMovement()
+    {
+        movementDisabled = true;
+    }
+
     private IEnumerator LerpToPosition(
         Vector3 startLocation, Vector3 endLocation)
     {
@@ -356,13 +372,22 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
+        // Check for colliders in the target location
         if (Physics.Linecast(current, target, out RaycastHit hitInfo))
         {
             GameObject other = hitInfo.collider.gameObject;
+            // Try to get components in other gameobject
             other.TryGetComponent(out Wall wall);
+            other.TryGetComponent(out NPC npc);
+
             if (wall != null)
             {
                 //Debug.Log("Blocked by wall");
+                return false;
+            }
+            if (npc != null)
+            {
+                Debug.Log("TalkToNPC");
                 return false;
             }
         }
@@ -398,5 +423,15 @@ public class PlayerController : MonoBehaviour
     public void UnregisterOnFlip(Action callbackfunc)
     {
         cbOnFlip -= callbackfunc;
+    }
+
+    public void RegisterOnStartTalkToNPC(Action<NPC> callbackfunc)
+    {
+        cbOnStartTalkToNPC += callbackfunc;
+    }
+
+    public void UnregisterOnStartTalkToNPC(Action<NPC> callbackfunc)
+    {
+        cbOnStartTalkToNPC -= callbackfunc;
     }
 }
