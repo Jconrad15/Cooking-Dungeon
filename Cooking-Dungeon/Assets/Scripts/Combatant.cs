@@ -7,4 +7,11 @@ public class Combatant : MonoBehaviour
     public int damageDealt = 1;
     public string combatantName;
 
+    public Health health;
+
+    private void Start()
+    {
+        health = GetComponent<Health>();
+    }
+
 }
