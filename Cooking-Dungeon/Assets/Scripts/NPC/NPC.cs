@@ -25,9 +25,7 @@ public class NPC : MonoBehaviour
             return;
         }
 
-
-
-
+        dialogueDisplayer.NewConversation(dialogue);
     }
 
 

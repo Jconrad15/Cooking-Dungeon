@@ -247,6 +247,11 @@ public class PlayerController : MonoBehaviour
         movementDisabled = true;
     }
 
+    public void EnableMovement()
+    {
+        movementDisabled = false;
+    }
+
     private IEnumerator LerpToPosition(
         Vector3 startLocation, Vector3 endLocation)
     {
@@ -353,22 +358,22 @@ public class PlayerController : MonoBehaviour
         {
             case Direction.Forward:
                 target += (floorSize * transform.forward);
-                //Debug.DrawRay(current, transform.forward, Color.green, 3);
+                Debug.DrawRay(current, transform.forward, Color.green, 3);
                 break;
 
             case Direction.Backward:
                 target -= (floorSize * transform.forward);
-                //Debug.DrawRay(current, -transform.forward, Color.green, 3);
+                Debug.DrawRay(current, -transform.forward, Color.green, 3);
                 break;
 
             case Direction.Left:
                 target -= (floorSize * transform.right);
-                //Debug.DrawRay(current, -transform.right, Color.green, 3);
+                Debug.DrawRay(current, -transform.right, Color.green, 3);
                 break;
 
             case Direction.Right:
                 target += (floorSize * transform.right);
-                //Debug.DrawRay(current, transform.right, Color.green, 3);
+                Debug.DrawRay(current, transform.right, Color.green, 3);
                 break;
         }
 
@@ -382,11 +387,12 @@ public class PlayerController : MonoBehaviour
 
             if (wall != null)
             {
-                //Debug.Log("Blocked by wall");
+                Debug.Log("Blocked by wall");
                 return false;
             }
             if (npc != null)
             {
+                cbOnStartTalkToNPC(npc);
                 Debug.Log("TalkToNPC");
                 return false;
             }
