@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
         currentLocation.y += currentOffset;
         float radius = 0.2f;
 
-        int maxColliders = 2;
+        int maxColliders = 4;
         Collider[] hitColliders = new Collider[maxColliders];
         int numColliders = Physics.OverlapSphereNonAlloc(
             currentLocation, radius, hitColliders);
