@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class SoundController : MonoBehaviour
+public class PlayerSound : MonoBehaviour
 {
     [SerializeField]
     private AudioClip move;
@@ -27,7 +27,6 @@ public class SoundController : MonoBehaviour
 
     private void OnMove()
     {
-        Debug.Log("move");
         audioSource.PlayOneShot(move);
     }
 
