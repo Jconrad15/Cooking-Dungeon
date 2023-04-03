@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private Action cbOnFlip;
 
     private Action<NPC> cbOnStartTalkToNPC;
+    private Action<Combatant> cbOnStartCombat;
 
     private LayerMask movementMask;
 
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
 
         actions = new Queue<KeyCode>();
-        string[] layerNames = new string[2] { "Wall", "NPC" };
+        string[] layerNames = new string[3] { "Wall", "NPC", "Enemy" };
         movementMask = LayerMask.GetMask(layerNames);
     }
 
@@ -397,6 +398,12 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("TalkToNPC");
                 return false;
             }
+            if (other.TryGetComponent(out Combatant combatant))
+            {
+                cbOnStartCombat(combatant);
+                Debug.Log("StartCombat");
+                return false;
+            }
         }
 
         return true;
@@ -440,5 +447,15 @@ public class PlayerController : MonoBehaviour
     public void UnregisterOnStartTalkToNPC(Action<NPC> callbackfunc)
     {
         cbOnStartTalkToNPC -= callbackfunc;
+    }
+
+    public void RegisterOnStartCombat(Action<Combatant> callbackfunc)
+    {
+        cbOnStartCombat += callbackfunc;
+    }
+
+    public void UnregisterOnStartCombat(Action<Combatant> callbackfunc)
+    {
+        cbOnStartCombat -= callbackfunc;
     }
 }
