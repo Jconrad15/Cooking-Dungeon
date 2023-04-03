@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class DialogueDisplayer : MonoBehaviour
 {
@@ -31,22 +32,30 @@ public class DialogueDisplayer : MonoBehaviour
     private IEnumerator DisplayConversation(string[] dialogue)
     {
         int index = 0;
-        ShowText(dialogue[index]);
-
-        bool done = false;
-        while (done == false)
+        if (dialogue.Length <= 0)
         {
-            if (Input.GetKeyDown(nextButton))
-            {
-                index++;
-                if (index >= dialogue.Length)
-                {
-                    done = true;
-                    break;
-                }
-                ShowText(dialogue[index]);
-            }
+            Debug.LogError("This character has no dialogue");
             yield return null;
+        }
+        else
+        {
+            ShowText(dialogue[index]);
+
+            bool done = false;
+            while (done == false)
+            {
+                if (Input.GetKeyDown(nextButton))
+                {
+                    index++;
+                    if (index >= dialogue.Length)
+                    {
+                        done = true;
+                        break;
+                    }
+                    ShowText(dialogue[index]);
+                }
+                yield return null;
+            }
         }
 
         Debug.Log("Conversation Done");
@@ -66,6 +75,7 @@ public class DialogueDisplayer : MonoBehaviour
 
     private void HideDialogueBox()
     {
+        ShowText("...");
         dialogueBox.SetActive(false);
     }
 
