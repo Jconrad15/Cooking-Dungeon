@@ -67,6 +67,10 @@ public class CombatDisplayer : MonoBehaviour
             {
                 Debug.Log("AttackButton");
                 otherCombatant.health.Hurt(playerCombatant.damageDealt);
+
+                // FOR now, the other combatant
+                // attacks player after being attacked
+                playerCombatant.health.Hurt(otherCombatant.damageDealt);
             }
             yield return null;
         }

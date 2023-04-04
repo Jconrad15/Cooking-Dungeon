@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 7833282810004954035}
   - component: {fileID: 8102328394211994608}
   - component: {fileID: 1920223872610848141}
+  - component: {fileID: 1214149386279166366}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -526,9 +527,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeef6bc774483429f3d605bed73106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageDealt: 1
+  damageDealt: 3
   combatantName: 
   health: {fileID: 8102328394211994608}
+--- !u!114 &1214149386279166366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588452150502137977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2fc5a649ad52a4ca934058e75e538f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredients: []
+  meals: []
 --- !u!1 &9077519694221261816
 GameObject:
   m_ObjectHideFlags: 0

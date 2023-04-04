@@ -15,3 +15,4 @@ MonoBehaviour:
   name: Carrot
   description: This is a carrot
   image: {fileID: 21300000, guid: d2c68d620c18a984fbfdee74bae3967c, type: 3}
+  healAmount: 2
