@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private Action<NPC> cbOnStartTalkToNPC;
     private Action<Combatant> cbOnStartCombat;
+    private Action<Ingredient> cbOnRunIntoItem;
 
     private LayerMask movementMask;
 
@@ -55,7 +56,8 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
 
         actions = new Queue<KeyCode>();
-        string[] layerNames = new string[3] { "Wall", "NPC", "Enemy" };
+        string[] layerNames = new string[4]
+        { "Wall", "NPC", "Enemy", "Ingredient" };
         movementMask = LayerMask.GetMask(layerNames);
     }
 
@@ -404,6 +406,12 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("StartCombat");
                 return false;
             }
+            if (other.TryGetComponent(out Ingredient ingredient))
+            {
+                cbOnRunIntoItem(ingredient);
+                Debug.Log("RunIntoItem");
+                return false;
+            }
         }
 
         return true;
@@ -457,5 +465,15 @@ public class PlayerController : MonoBehaviour
     public void UnregisterOnStartCombat(Action<Combatant> callbackfunc)
     {
         cbOnStartCombat -= callbackfunc;
+    }
+
+    public void RegisterOnRunIntoItem(Action<Ingredient> callbackfunc)
+    {
+        cbOnRunIntoItem += callbackfunc;
+    }
+
+    public void UnregisterOnRunIntoItem(Action<Ingredient> callbackfunc)
+    {
+        cbOnRunIntoItem -= callbackfunc;
     }
 }
