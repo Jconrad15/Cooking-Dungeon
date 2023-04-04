@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private Action<NPC> cbOnStartTalkToNPC;
     private Action<Combatant> cbOnStartCombat;
     private Action<Ingredient> cbOnRunIntoItem;
+    private Action<CookStation> cbOnStartCook;
 
     private LayerMask movementMask;
 
@@ -56,8 +57,8 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
 
         actions = new Queue<KeyCode>();
-        string[] layerNames = new string[4]
-        { "Wall", "NPC", "Enemy", "Ingredient" };
+        string[] layerNames = new string[5]
+        { "Wall", "NPC", "Enemy", "Ingredient", "CookStation" };
         movementMask = LayerMask.GetMask(layerNames);
     }
 
@@ -365,22 +366,22 @@ public class PlayerController : MonoBehaviour
         {
             case Direction.Forward:
                 target += (floorSize * transform.forward);
-                Debug.DrawRay(current, transform.forward, Color.green, 3);
+                //Debug.DrawRay(current, transform.forward, Color.green, 3);
                 break;
 
             case Direction.Backward:
                 target -= (floorSize * transform.forward);
-                Debug.DrawRay(current, -transform.forward, Color.green, 3);
+                //Debug.DrawRay(current, -transform.forward, Color.green, 3);
                 break;
 
             case Direction.Left:
                 target -= (floorSize * transform.right);
-                Debug.DrawRay(current, -transform.right, Color.green, 3);
+                //Debug.DrawRay(current, -transform.right, Color.green, 3);
                 break;
 
             case Direction.Right:
                 target += (floorSize * transform.right);
-                Debug.DrawRay(current, transform.right, Color.green, 3);
+                //Debug.DrawRay(current, transform.right, Color.green, 3);
                 break;
         }
 
@@ -396,20 +397,26 @@ public class PlayerController : MonoBehaviour
             }
             if (other.TryGetComponent(out NPC npc))
             {
-                cbOnStartTalkToNPC(npc);
+                cbOnStartTalkToNPC?.Invoke(npc);
                 Debug.Log("TalkToNPC");
                 return false;
             }
             if (other.TryGetComponent(out Combatant combatant))
             {
-                cbOnStartCombat(combatant);
+                cbOnStartCombat?.Invoke(combatant);
                 Debug.Log("StartCombat");
                 return false;
             }
             if (other.TryGetComponent(out Ingredient ingredient))
             {
-                cbOnRunIntoItem(ingredient);
+                cbOnRunIntoItem?.Invoke(ingredient);
                 Debug.Log("RunIntoItem");
+                return false;
+            }
+            if (other.TryGetComponent(out CookStation CookStation))
+            {
+                cbOnStartCook?.Invoke(CookStation);
+                Debug.Log("StartCooking");
                 return false;
             }
         }
@@ -475,5 +482,15 @@ public class PlayerController : MonoBehaviour
     public void UnregisterOnRunIntoItem(Action<Ingredient> callbackfunc)
     {
         cbOnRunIntoItem -= callbackfunc;
+    }
+
+    public void RegisterOnStartCook(Action<CookStation> callbackfunc)
+    {
+        cbOnStartCook += callbackfunc;
+    }
+
+    public void UnregisterOnStartCook(Action<CookStation> callbackfunc)
+    {
+        cbOnStartCook -= callbackfunc;
     }
 }

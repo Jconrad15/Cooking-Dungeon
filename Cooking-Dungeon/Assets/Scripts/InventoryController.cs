@@ -20,4 +20,14 @@ public class InventoryController : MonoBehaviour
             inventoryDisplayer.Toggle();
         }
     }
+
+    public void ShowInventoryUI()
+    {
+        inventoryDisplayer.ShowInventory();
+    }
+
+    public void HideInventoryUI()
+    {
+        inventoryDisplayer.HideInventory();
+    }
 }

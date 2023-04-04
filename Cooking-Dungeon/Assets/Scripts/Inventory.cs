@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
 
         PlayerController pc = FindAnyObjectByType<PlayerController>();
         pc.RegisterOnRunIntoItem(OnRunIntoItem);
-
     }
 
     private void OnRunIntoItem(Ingredient newIngredient)
@@ -43,6 +42,20 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    public bool TryRemoveIngredientByCooking(IngredientData ingredient)
+    {
+        for (int i = 0; i < ingredients.Count; i++)
+        {
+            if (ingredients[i].name == ingredient.name)
+            {
+                ingredients.Remove(ingredients[i]);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void AddMeal(MealData meal)
     {
         meals.Add(meal);
@@ -59,5 +72,33 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    public bool CheckForIngredients(IngredientData[] neededIngredients)
+    {
+        bool[] checks = new bool[neededIngredients.Length];
+
+        for (int i = 0; i < neededIngredients.Length; i++)
+        {
+            for (int j = 0; j < ingredients.Count; j++)
+            {
+                if (ingredients[j].name == neededIngredients[i].name)
+                {
+                    ingredients.Remove(ingredients[j]);
+                    checks[i] = true;
+                    break;
+                }
+            }
+        }
+
+        // Evaluate if any checks were false
+        for (int i = 0; i < checks.Length; i++)
+        {
+            if (checks[i] == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 }
