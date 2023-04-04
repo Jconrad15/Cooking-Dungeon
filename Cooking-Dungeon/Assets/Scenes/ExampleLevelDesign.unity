@@ -1010,16 +1010,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: wantsMeal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: wantedMealData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a8adc78d18be894db231029b25a18a2, type: 2}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
       propertyPath: dialogue.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
       propertyPath: dialogue.Array.data[0]
-      value: Give me food
+      value: Give me carrot stew.
       objectReference: {fileID: 0}
     - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
       propertyPath: dialogue.Array.data[1]
-      value: Now
+      value: Now!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: receiveMealDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: receiveMealDialogue.Array.data[0]
+      value: Thanks,
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017405500333352514, guid: 44fcc8e0ab0c51a45b502fbc5d463989, type: 3}
+      propertyPath: receiveMealDialogue.Array.data[1]
+      value: I feel better now.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

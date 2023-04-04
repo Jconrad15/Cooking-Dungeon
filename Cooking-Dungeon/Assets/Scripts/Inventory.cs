@@ -72,6 +72,20 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    public bool TryGiveMeal(MealData meal)
+    {
+        for (int i = 0; i < meals.Count; i++)
+        {
+            if (meals[i].name == meal.name)
+            {
+                meals.Remove(meal);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public bool CheckForIngredients(IngredientData[] neededIngredients)
     {
         bool[] checks = new bool[neededIngredients.Length];
