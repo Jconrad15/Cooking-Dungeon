@@ -1,9 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CookingDisplayer : MonoBehaviour
 {
+    private Action cbOnCooked;
+    private Action cbOnFailedToCook;
+
     private PlayerController playerController;
     private InventoryController inventoryController;
 
@@ -81,6 +84,7 @@ public class CookingDisplayer : MonoBehaviour
                 inventory.TryRemoveIngredientByCooking(neededIngredients[i]);
             }
             Debug.Log("Cooked");
+            cbOnCooked?.Invoke();
             inventoryController.ShowInventoryUI();
         }
         else
@@ -89,8 +93,28 @@ public class CookingDisplayer : MonoBehaviour
             // Do nothing?
             // TODO: indicate to player that this cannot be made
             Debug.Log("Not Cooked");
+            cbOnFailedToCook?.Invoke();
         }
 
     }
 
+    public void RegisterOnCooked(Action callbackfunc)
+    {
+        cbOnCooked += callbackfunc;
+    }
+
+    public void UnregisterOnCooked(Action callbackfunc)
+    {
+        cbOnCooked -= callbackfunc;
+    }
+
+    public void RegisterOnFailedToCook(Action callbackfunc)
+    {
+        cbOnFailedToCook += callbackfunc;
+    }
+
+    public void UnregisterOnFailedToCook(Action callbackfunc)
+    {
+        cbOnFailedToCook -= callbackfunc;
+    }
 }
