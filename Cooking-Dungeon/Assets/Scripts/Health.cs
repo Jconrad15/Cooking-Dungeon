@@ -19,9 +19,9 @@ public class Health : MonoBehaviour
     public void Hurt(int damage)
     {
         currentHealth -= damage;
+        cbOnHealthChanged?.Invoke(currentHealth);
         if (currentHealth <= 0)
         {
-            cbOnHealthChanged?.Invoke(currentHealth);
             Die();
         }
     }
