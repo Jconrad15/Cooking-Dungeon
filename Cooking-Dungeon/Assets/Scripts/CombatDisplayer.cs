@@ -66,11 +66,11 @@ public class CombatDisplayer : MonoBehaviour
             if (Input.GetKeyDown(attackButton))
             {
                 Debug.Log("AttackButton");
-                otherCombatant.health.Hurt(playerCombatant.damageDealt);
+                playerCombatant.Attack(otherCombatant);
 
-                // FOR now, the other combatant
+                // TODO: FOR NOW, the other combatant
                 // attacks player after being attacked
-                playerCombatant.health.Hurt(otherCombatant.damageDealt);
+                otherCombatant.Attack(playerCombatant);
             }
             yield return null;
         }

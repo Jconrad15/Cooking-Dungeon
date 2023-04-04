@@ -17,7 +17,7 @@ public class HealthUI : MonoBehaviour
             .RegisterOnHealthChanged(OnHealthChanged);
     }
 
-    private void OnHealthChanged(int newAmount)
+    private void OnHealthChanged(int newAmount, bool increased)
     {
         healthText.SetText(newAmount.ToString());
     }

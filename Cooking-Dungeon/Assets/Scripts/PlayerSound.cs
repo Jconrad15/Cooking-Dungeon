@@ -17,6 +17,12 @@ public class PlayerSound : MonoBehaviour
     private AudioClip startCombat;
     [SerializeField]
     private AudioClip startTalkToNPC;
+    [SerializeField]
+    private AudioClip attack;
+    [SerializeField]
+    private AudioClip hurt;
+    [SerializeField]
+    private AudioClip heal;
 
     private AudioSource audioSource;
 
@@ -32,6 +38,11 @@ public class PlayerSound : MonoBehaviour
         pc.RegisterOnRunIntoItem(OnRunIntoItem);
         pc.RegisterOnStartCombat(OnStartCombat);
         pc.RegisterOnStartTalkToNPC(OnStartTalkToNPC);
+        
+        pc.GetComponent<Combatant>().RegisterOnAttack(OnAttack);
+
+        Health health = pc.GetComponent<Health>();
+        health.RegisterOnHealthChanged(OnHealthChanged);
     }
 
     private void OnMove()
@@ -64,4 +75,20 @@ public class PlayerSound : MonoBehaviour
         audioSource.PlayOneShot(startTalkToNPC);
     }
 
+    private void OnAttack(Combatant combatant)
+    {
+        audioSource.PlayOneShot(attack);
+    }
+
+    private void OnHealthChanged(int amount, bool increased)
+    {
+        if (increased)
+        {
+            audioSource.PlayOneShot(heal);
+        }
+        else
+        {
+            audioSource.PlayOneShot(hurt);
+        }
+    }
 }

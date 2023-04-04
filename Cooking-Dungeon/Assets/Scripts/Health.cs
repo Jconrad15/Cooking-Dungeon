@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private Action<int> cbOnHealthChanged;
+    // <amount, increased==true>
+    private Action<int, bool> cbOnHealthChanged;
 
     // Max defaults to 6
     public int maxHealth = 6;
@@ -13,13 +14,13 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        cbOnHealthChanged?.Invoke(currentHealth);
+        cbOnHealthChanged?.Invoke(currentHealth, true);
     }
 
     public void Hurt(int damage)
     {
         currentHealth -= damage;
-        cbOnHealthChanged?.Invoke(currentHealth);
+        cbOnHealthChanged?.Invoke(currentHealth, false);
         if (currentHealth <= 0)
         {
             Die();
@@ -32,7 +33,7 @@ public class Health : MonoBehaviour
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
-            cbOnHealthChanged?.Invoke(currentHealth);
+            cbOnHealthChanged?.Invoke(currentHealth, true);
         }
     }
 
@@ -43,12 +44,12 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void RegisterOnHealthChanged(Action<int> callbackfunc)
+    public void RegisterOnHealthChanged(Action<int, bool> callbackfunc)
     {
         cbOnHealthChanged += callbackfunc;
     }
 
-    public void UnregisterOnHealthChanged(Action<int> callbackfunc)
+    public void UnregisterOnHealthChanged(Action<int, bool> callbackfunc)
     {
         cbOnHealthChanged -= callbackfunc;
     }
