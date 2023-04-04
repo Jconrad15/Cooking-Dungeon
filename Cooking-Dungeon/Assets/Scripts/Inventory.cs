@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
         {
             if (meals[i].name == meal.name)
             {
-                meals.Remove(meal);
+                meals.Remove(meals[i]);
                 return true;
             }
         }
