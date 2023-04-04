@@ -11,6 +11,12 @@ public class PlayerSound : MonoBehaviour
     private AudioClip flip;
     [SerializeField]
     private AudioClip rotate;
+    [SerializeField]
+    private AudioClip runIntoItem;
+    [SerializeField]
+    private AudioClip startCombat;
+    [SerializeField]
+    private AudioClip startTalkToNPC;
 
     private AudioSource audioSource;
 
@@ -23,6 +29,9 @@ public class PlayerSound : MonoBehaviour
         pc.RegisterOnMove(OnMove);
         pc.RegisterOnFlip(OnFlip);
         pc.RegisterOnRotate(OnRotate);
+        pc.RegisterOnRunIntoItem(OnRunIntoItem);
+        pc.RegisterOnStartCombat(OnStartCombat);
+        pc.RegisterOnStartTalkToNPC(OnStartTalkToNPC);
     }
 
     private void OnMove()
@@ -39,4 +48,20 @@ public class PlayerSound : MonoBehaviour
     {
         audioSource.PlayOneShot(rotate);
     }
+
+    private void OnRunIntoItem(Ingredient ingredient)
+    {
+        audioSource.PlayOneShot(runIntoItem);
+    }
+
+    private void OnStartCombat(Combatant combatant)
+    {
+        audioSource.PlayOneShot(startCombat);
+    }
+
+    private void OnStartTalkToNPC(NPC npc)
+    {
+        audioSource.PlayOneShot(startTalkToNPC);
+    }
+
 }
