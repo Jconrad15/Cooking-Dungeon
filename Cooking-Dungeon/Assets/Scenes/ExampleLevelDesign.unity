@@ -39675,10 +39675,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1857344986526776682, guid: e320991af97660743a2d48482bb4410a, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a9b8d7b1d31300240a3a183077f20ee1, type: 2}
     - target: {fileID: 4455142598988702133, guid: e320991af97660743a2d48482bb4410a, type: 3}
       propertyPath: m_Name
       value: CookStation
