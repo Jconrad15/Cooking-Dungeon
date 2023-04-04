@@ -6,7 +6,8 @@ using Unity.VisualScripting;
 
 public class DialogueDisplayer : MonoBehaviour
 {
-    private KeyCode nextButton = KeyCode.Space;
+    private KeyCode nextButtonA = KeyCode.Space;
+    private KeyCode nextButtonB = KeyCode.S;
 
     [SerializeField]
     private TextMeshProUGUI text;
@@ -60,7 +61,8 @@ public class DialogueDisplayer : MonoBehaviour
             bool done = false;
             while (done == false)
             {
-                if (Input.GetKeyDown(nextButton))
+                if (Input.GetKeyDown(nextButtonA) ||
+                    Input.GetKeyDown(nextButtonB))
                 {
                     index++;
                     if (index >= dialogue.Length)
@@ -135,7 +137,8 @@ public class DialogueDisplayer : MonoBehaviour
             bool done = false;
             while (done == false)
             {
-                if (Input.GetKeyDown(nextButton))
+                if (Input.GetKeyDown(nextButtonA) ||
+                    Input.GetKeyDown(nextButtonB))
                 {
                     index++;
                     if (index >= dialogue.Length)
