@@ -34,6 +34,11 @@ public class NPC : MonoBehaviour
         dialogueDisplayer.NewConversation(this);
     }
 
+    public void ReceivedMeal()
+    {
+        //TODO: particle effect poof?
+        Destroy(gameObject);
+    }
 
 
 }

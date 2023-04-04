@@ -119,6 +119,7 @@ public class DialogueDisplayer : MonoBehaviour
 
     private IEnumerator DisplayGiveMealOutcome(NPC npc)
     {
+        HideGiveMealUI();
         string[] dialogue = npc.receiveMealDialogue;
 
         int index = 0;
@@ -150,6 +151,7 @@ public class DialogueDisplayer : MonoBehaviour
 
         Debug.Log("Conversation Done");
         HideDialogueBox();
+        npc.ReceivedMeal();
         playerController.EnableMovement();
     }
 
