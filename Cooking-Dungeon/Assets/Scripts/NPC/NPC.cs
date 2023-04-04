@@ -8,7 +8,13 @@ public class NPC : MonoBehaviour
     DialogueDisplayer dialogueDisplayer;
 
     [SerializeField]
-    private string[] dialogue; 
+    public string[] dialogue;
+
+    [SerializeField]
+    public MealData wantedMealData;
+
+    [SerializeField]
+    public string[] receiveMealDialogue;
 
     private void Start()
     {
@@ -25,7 +31,7 @@ public class NPC : MonoBehaviour
             return;
         }
 
-        dialogueDisplayer.NewConversation(dialogue);
+        dialogueDisplayer.NewConversation(this);
     }
 
 
