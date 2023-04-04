@@ -1,16 +1,19 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // max defaults to 6
+    private Action<int> cbOnHealthChanged;
+
+    // Max defaults to 6
     public int maxHealth = 6;
     public int currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        cbOnHealthChanged?.Invoke(currentHealth);
     }
 
     public void Hurt(int damage)
@@ -18,6 +21,7 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            cbOnHealthChanged?.Invoke(currentHealth);
             Die();
         }
     }
@@ -28,6 +32,7 @@ public class Health : MonoBehaviour
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
+            cbOnHealthChanged?.Invoke(currentHealth);
         }
     }
 
@@ -36,5 +41,15 @@ public class Health : MonoBehaviour
         // TODO: Add particle effect as a poof?
 
         Destroy(gameObject);
+    }
+
+    public void RegisterOnHealthChanged(Action<int> callbackfunc)
+    {
+        cbOnHealthChanged += callbackfunc;
+    }
+
+    public void UnregisterOnHealthChanged(Action<int> callbackfunc)
+    {
+        cbOnHealthChanged -= callbackfunc;
     }
 }
