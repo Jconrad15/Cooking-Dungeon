@@ -45,17 +45,17 @@ public class InventoryDisplayer : MonoBehaviour
         }
     }
 
-    private void ShowInventory()
+    public void ShowInventory()
     {
         isVisible = true;
-
+        CleanUI();
         CreateIngredients();
         CreateMeals();
 
         inventoryObjectsArea.SetActive(true);
     }
 
-    private void HideInventory()
+    public void HideInventory()
     {
         isVisible = false;
 
