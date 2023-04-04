@@ -17,3 +17,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: e9f5b3b37789bc04dab7c27a75aca7bc, type: 3}
   requiredIngredients:
   - {fileID: 11400000, guid: 23fe94e03f03dbd45af898f2a6cbfc29, type: 2}
+  healAmount: 4

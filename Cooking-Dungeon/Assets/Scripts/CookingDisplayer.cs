@@ -36,7 +36,8 @@ public class CookingDisplayer : MonoBehaviour
         while (done == false)
         {
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) ||
+                Input.GetKeyDown(KeyCode.S))
             {
                 done = true;
                 break;
