@@ -13,10 +13,20 @@ public class IngredientUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI description;
 
-    public void Init(IngredientData ingredient)
+    private IngredientData ingredientData;
+
+    public void Init(IngredientData newIngredientData)
     {
-        image.sprite = ingredient.image;
-        title.SetText(ingredient.name);
-        description.SetText(ingredient.description);
+        ingredientData = newIngredientData;
+        image.sprite = newIngredientData.image;
+        title.SetText(newIngredientData.name);
+        description.SetText(newIngredientData.description);
+    }
+
+    public void EatIngredientButton()
+    {
+        InventoryDisplayer inventoryDisplayer =
+            FindAnyObjectByType<InventoryDisplayer>();
+        inventoryDisplayer.EatIngredientButton(this, ingredientData);
     }
 }

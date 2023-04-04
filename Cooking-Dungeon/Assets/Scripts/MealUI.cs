@@ -13,12 +13,21 @@ public class MealUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI description;
 
-    public void Init(MealData meal)
+    private MealData mealData;
+
+    public void Init(MealData newMealData)
     {
-        image.sprite = meal.image;
-        title.SetText(meal.name);
-        description.SetText(meal.description);
+        mealData = newMealData;
+        image.sprite = newMealData.image;
+        title.SetText(newMealData.name);
+        description.SetText(newMealData.description);
     }
 
+    public void EatMealButton()
+    {
+        InventoryDisplayer inventoryDisplayer =
+            FindAnyObjectByType<InventoryDisplayer>();
+        inventoryDisplayer.EatMealButton(this, mealData);
+    }
 
 }

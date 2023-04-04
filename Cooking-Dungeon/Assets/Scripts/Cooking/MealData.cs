@@ -9,6 +9,6 @@ public class MealData : ScriptableObject
     public string description;
     public Sprite image;
     public IngredientData[] requiredIngredients;
-
+    public int healAmount;
 
 }

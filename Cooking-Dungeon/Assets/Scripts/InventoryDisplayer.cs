@@ -17,6 +17,7 @@ public class InventoryDisplayer : MonoBehaviour
     private GameObject mealPrefab;
 
     private Inventory inventory;
+    private Health playerHealth;
 
     private List<GameObject> createdGOs;
 
@@ -26,6 +27,9 @@ public class InventoryDisplayer : MonoBehaviour
     {
         createdGOs = new List<GameObject>();
         inventory = FindAnyObjectByType<Inventory>();
+        playerHealth =
+            FindAnyObjectByType<PlayerController>()
+            .GetComponent<Health>();
         HideInventory();
     }
 
@@ -95,6 +99,36 @@ public class InventoryDisplayer : MonoBehaviour
         {
             Destroy(createdGOs[i]);
         }
+    }
+
+    public void EatIngredientButton(
+        IngredientUI ingredientUI, IngredientData ingredientData)
+    {
+        if (inventory.TryRemoveIngredient(ingredientData) == false)
+        {
+            return;
+        }
+
+        // Apply effects of ingredient
+        playerHealth.Heal(ingredientData.healAmount);
+
+        createdGOs.Remove(ingredientUI.gameObject);
+        Destroy(ingredientUI.gameObject);
+    }
+
+    public void EatMealButton(
+        MealUI mealUI, MealData mealData)
+    {
+        if (inventory.TryRemoveMeal(mealData) == false)
+        {
+            return;
+        }
+
+        // Apply effects of meal
+        playerHealth.Heal(mealData.healAmount);
+
+        createdGOs.Remove(mealUI.gameObject);
+        Destroy(mealUI.gameObject);
     }
 
 }

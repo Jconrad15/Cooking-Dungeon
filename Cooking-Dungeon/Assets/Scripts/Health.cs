@@ -22,6 +22,15 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void Heal(int healAmount)
+    {
+        currentHealth += healAmount;
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
     private void Die()
     {
         // TODO: Add particle effect as a poof?

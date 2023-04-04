@@ -9,4 +9,6 @@ public class IngredientData : ScriptableObject
     public string description;
     public Sprite image;
 
+    public int healAmount;
+
 }
