@@ -13,8 +13,10 @@ public class HealthUI : MonoBehaviour
         PlayerController playerController =
             FindAnyObjectByType<PlayerController>();
 
-        playerController.GetComponent<Health>()
-            .RegisterOnHealthChanged(OnHealthChanged);
+        Health health = playerController.GetComponent<Health>();
+        health.RegisterOnHealthChanged(OnHealthChanged);
+
+        OnHealthChanged(health.currentHealth, true);
     }
 
     private void OnHealthChanged(int newAmount, bool increased)

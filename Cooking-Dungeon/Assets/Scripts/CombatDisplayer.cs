@@ -67,14 +67,20 @@ public class CombatDisplayer : MonoBehaviour
             {
                 Debug.Log("AttackButton");
                 playerCombatant.Attack(otherCombatant);
-
+                yield return new WaitForSeconds(0.5f);
                 // TODO: FOR NOW, the other combatant
                 // attacks player after being attacked
+                // Check if otherCombatant died
+                if (otherCombatant == null)
+                {
+                    done = true;
+                    break;
+                }
                 otherCombatant.Attack(playerCombatant);
             }
             yield return null;
         }
-
+        yield return new WaitForSeconds(0.25f);
         Debug.Log("Combat Done");
         HideCombatUI();
         playerController.EnableMovement();
