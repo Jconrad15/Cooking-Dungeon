@@ -82,6 +82,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: []
+  wantedMealData: {fileID: 0}
+  receiveMealDialogue: []
+  poofParticlesPrefab: {fileID: 7476358739167208746, guid: a53e5e45f2d1479438912e30452e363b, type: 3}
 --- !u!114 &3213898759607814754
 MonoBehaviour:
   m_ObjectHideFlags: 0

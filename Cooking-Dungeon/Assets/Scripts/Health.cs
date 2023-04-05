@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject deathParticles;
+
     // <amount, increased==true>
     private Action<int, bool> cbOnHealthChanged;
 
@@ -40,6 +43,10 @@ public class Health : MonoBehaviour
     private void Die()
     {
         // TODO: Add particle effect as a poof?
+        GameObject particles = Instantiate(deathParticles);
+        particles.transform.position = transform.position;
+        particles.transform.rotation =
+            Quaternion.LookRotation(transform.up);
 
         Destroy(gameObject);
     }

@@ -16,6 +16,9 @@ public class NPC : MonoBehaviour
     [SerializeField]
     public string[] receiveMealDialogue;
 
+    [SerializeField]
+    private GameObject poofParticlesPrefab;
+
     private void Start()
     {
         dialogueDisplayer = FindAnyObjectByType<DialogueDisplayer>();
@@ -36,7 +39,12 @@ public class NPC : MonoBehaviour
 
     public void ReceivedMeal()
     {
-        //TODO: particle effect poof?
+        //Particle effect poof?
+        GameObject particles = Instantiate(poofParticlesPrefab);
+        particles.transform.position = transform.position;
+        particles.transform.rotation =
+            Quaternion.LookRotation(transform.up);
+
         Destroy(gameObject);
     }
 

@@ -20,6 +20,10 @@ public class FaceCamera : MonoBehaviour
         }
         
         transform.LookAt(worldPos, worldUp);
+    }
 
+    public bool CheckIsOnSurface()
+    {
+        return isOnSurface;
     }
 }
