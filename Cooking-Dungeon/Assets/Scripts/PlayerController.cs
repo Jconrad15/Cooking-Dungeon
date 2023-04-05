@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         isOnSurface = true;
         currentOffset = surfaceOffset;
 
-        movementDisabled = false;
+        movementDisabled = true;
         isMoving = false;
 
         actions = new Queue<KeyCode>();
@@ -257,6 +257,12 @@ public class PlayerController : MonoBehaviour
 
     public void EnableMovement()
     {
+        StartCoroutine(EnableMovementDelayed());
+    }
+
+    private IEnumerator EnableMovementDelayed()
+    {
+        yield return new WaitForEndOfFrame();
         movementDisabled = false;
     }
 
