@@ -42,6 +42,9 @@ public class NPC : MonoBehaviour
         //TODO: particle effect poof?
         GameObject particles = Instantiate(poofParticlesPrefab);
         particles.transform.position = transform.position;
+        particles.transform.rotation =
+            Quaternion.LookRotation(transform.up);
+
         Destroy(gameObject);
     }
 
