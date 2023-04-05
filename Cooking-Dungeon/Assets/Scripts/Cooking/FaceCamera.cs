@@ -26,4 +26,9 @@ public class FaceCamera : MonoBehaviour
     {
         return isOnSurface;
     }
+
+    public void SetIsOnSurface(bool isOnSurface)
+    {
+        this.isOnSurface = isOnSurface;
+    }
 }

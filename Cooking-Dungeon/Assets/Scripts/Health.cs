@@ -42,11 +42,24 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        // TODO: Add particle effect as a poof?
+        // Particle effect
         GameObject particles = Instantiate(deathParticles);
         particles.transform.position = transform.position;
         particles.transform.rotation =
             Quaternion.LookRotation(transform.up);
+
+        // Check if this character drops an ingredient on death
+        if (TryGetComponent(out Combatant c))
+        {
+            if (c.droppedIngredientPrefab != null)
+            {
+                GameObject ingredient = Instantiate(
+                    c.droppedIngredientPrefab);
+                ingredient.transform.position = transform.position;
+                ingredient.GetComponent<FaceCamera>()
+                    .SetIsOnSurface(false);
+            }
+        }
 
         Destroy(gameObject);
     }
