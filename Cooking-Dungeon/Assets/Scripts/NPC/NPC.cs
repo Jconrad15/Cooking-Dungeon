@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
 
     public void ReceivedMeal()
     {
-        //TODO: particle effect poof?
+        //Particle effect poof?
         GameObject particles = Instantiate(poofParticlesPrefab);
         particles.transform.position = transform.position;
         particles.transform.rotation =

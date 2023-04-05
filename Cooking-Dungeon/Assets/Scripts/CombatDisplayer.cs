@@ -37,7 +37,7 @@ public class CombatDisplayer : MonoBehaviour
     private IEnumerator Combat(Combatant otherCombatant)
     {
         ShowText(otherCombatant.combatantName);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
 
         // TODO: combat goes here
         bool done = false;
@@ -67,7 +67,7 @@ public class CombatDisplayer : MonoBehaviour
             {
                 Debug.Log("AttackButton");
                 playerCombatant.Attack(otherCombatant);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.15f);
                 // TODO: FOR NOW, the other combatant
                 // attacks player after being attacked
                 // Check if otherCombatant died
@@ -80,7 +80,7 @@ public class CombatDisplayer : MonoBehaviour
             }
             yield return null;
         }
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         Debug.Log("Combat Done");
         HideCombatUI();
         playerController.EnableMovement();
