@@ -25,10 +25,9 @@ public class Inventory : MonoBehaviour
         Destroy(newIngredient.gameObject);
     }
 
-    public void AddIngredient(IngredientData ingredient)
+    private void AddIngredient(IngredientData ingredient)
     {
         ingredients.Add(ingredient);
-        Destroy(ingredient);
     }
 
     public bool TryRemoveIngredient(IngredientData ingredient)
@@ -96,7 +95,7 @@ public class Inventory : MonoBehaviour
             {
                 if (ingredients[j].name == neededIngredients[i].name)
                 {
-                    ingredients.Remove(ingredients[j]);
+                    //ingredients.Remove(ingredients[j]);
                     checks[i] = true;
                     break;
                 }

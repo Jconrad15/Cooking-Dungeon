@@ -11,6 +11,9 @@ public class Combatant : MonoBehaviour
 
     public Health health;
 
+    [SerializeField]
+    public GameObject droppedIngredientPrefab;
+
     private void Start()
     {
         health = GetComponent<Health>();

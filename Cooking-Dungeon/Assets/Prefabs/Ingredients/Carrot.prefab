@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 5376027087972212360}
   - component: {fileID: 3189992925475005953}
   m_Layer: 10
-  m_Name: Ingredient
+  m_Name: Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
