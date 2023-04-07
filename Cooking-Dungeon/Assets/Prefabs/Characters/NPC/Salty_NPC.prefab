@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3072784216282590313}
   - component: {fileID: 4067986587623374124}
   m_Layer: 8
-  m_Name: NPCPrefab
+  m_Name: Salty_NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,9 +81,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2961c83f1ebf21b4bbdbf8c2b812abaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: []
-  wantedMealData: {fileID: 0}
-  receiveMealDialogue: []
+  dialogue:
+  - 
+  - 
+  wantedMealData: {fileID: 11400000, guid: 8a20e64bd5eb8f0418e9f7832009e944, type: 2}
+  receiveMealDialogue:
+  - 
+  - 
   poofParticlesPrefab: {fileID: 7476358739167208746, guid: a53e5e45f2d1479438912e30452e363b, type: 3}
 --- !u!114 &3213898759607814754
 MonoBehaviour:
@@ -97,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c382ad8bd36696146bb67f4c2f66b1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnSurface: 0
+  isOnSurface: 1
 --- !u!65 &3072784216282590313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -204,7 +208,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fb2f2b943f5279d4d84ce2cf5fd08f1f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2468541dfaa064941aa3426b56d5eba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -8,6 +8,8 @@ public class CombatDisplayer : MonoBehaviour
 {
     private KeyCode attackButton = KeyCode.Space;
 
+    private Animator animator;
+
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
@@ -19,6 +21,8 @@ public class CombatDisplayer : MonoBehaviour
     // Start with combatBox off
     private void Start()
     {
+        animator = GetComponent<Animator>();
+
         playerController = FindAnyObjectByType<PlayerController>();
         playerController.RegisterOnStartCombat(NewCombat);
 

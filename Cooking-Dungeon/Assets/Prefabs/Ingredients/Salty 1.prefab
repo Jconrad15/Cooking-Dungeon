@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 5376027087972212360}
   - component: {fileID: 3189992925475005953}
   m_Layer: 10
-  m_Name: Carrot
+  m_Name: Salty 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbb3ca71ff1be647b3a8ea79bff80b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientData: {fileID: 11400000, guid: 23fe94e03f03dbd45af898f2a6cbfc29, type: 2}
+  ingredientData: {fileID: 11400000, guid: d9d61388558278b4283719247ab5ebab, type: 2}
 --- !u!114 &1358685519379618698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c382ad8bd36696146bb67f4c2f66b1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnSurface: 0
+  isOnSurface: 1
 --- !u!65 &5376027087972212360
 BoxCollider:
   m_ObjectHideFlags: 0
