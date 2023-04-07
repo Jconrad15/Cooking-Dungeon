@@ -67,7 +67,7 @@ public class CombatDisplayer : MonoBehaviour
             {
                 Debug.Log("AttackButton");
                 playerCombatant.Attack(otherCombatant);
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.25f);
                 // TODO: FOR NOW, the other combatant
                 // attacks player after being attacked
                 // Check if otherCombatant died

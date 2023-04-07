@@ -42,6 +42,13 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        // Different death processing for player
+        if (TryGetComponent(out PlayerController pc))
+        {
+            FindAnyObjectByType<PlayerDeathTrigger>().PlayerDied(pc);
+            return;
+        }
+
         // Particle effect
         GameObject particles = Instantiate(deathParticles);
         particles.transform.position = transform.position;
