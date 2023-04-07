@@ -104,7 +104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c379bde50a41eee429d4855e46c36521, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04590ef5714bf4948acf5b033821018f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -259,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1569447288755849891}
   - component: {fileID: 6884604643541482439}
+  - component: {fileID: 275575570803899726}
   m_Layer: 5
   m_Name: CombatDisplayerArea
   m_TagString: Untagged
@@ -301,3 +302,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 6921907526814401737}
   combatUI: {fileID: 399256254478298933}
+--- !u!95 &275575570803899726
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546302534338075514}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97e7f8b9b75d4a542b0bcbe0e9b00c66, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
