@@ -353,7 +353,7 @@ MonoBehaviour:
   m_text: 'In the lands beyond the seven seas, there lies a small village where the
     ''Heart of the Dungeon'' was rumored to have made its home. This heart was said
     to grant one immortality and riches beyond one''s wildest dreams. This is where
-    the story of the Chef starts.
+    the story of the Chef starts by flipping underground.
 
 '
   m_isRightToLeft: 0
@@ -382,8 +382,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -601,8 +601,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
