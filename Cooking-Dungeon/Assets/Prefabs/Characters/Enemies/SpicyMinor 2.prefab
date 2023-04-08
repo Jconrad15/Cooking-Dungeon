@@ -103,7 +103,7 @@ MonoBehaviour:
   damageDealt: 1
   combatantName: 
   health: {fileID: 2437176002597608007}
-  droppedIngredientPrefab: {fileID: 5553807133678367505, guid: f93a5d3787c24ec479efdaba22503f62, type: 3}
+  droppedIngredientPrefab: {fileID: 5553807133678367505, guid: c63311b75ccac074a8ef0361b721dc73, type: 3}
 --- !u!95 &2474764327500242595
 Animator:
   serializedVersion: 5

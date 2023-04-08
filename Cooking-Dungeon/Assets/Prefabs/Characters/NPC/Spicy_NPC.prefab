@@ -82,12 +82,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - 
-  - 
+  - How about we turn up the heat?
+  - Bring me something spicy will you?
   wantedMealData: {fileID: 11400000, guid: a9ddc9fd223794f449312e6ad1f15a0f, type: 2}
   receiveMealDialogue:
-  - 
-  - 
+  - Good job kid.
+  - Good job...
   poofParticlesPrefab: {fileID: 7476358739167208746, guid: a53e5e45f2d1479438912e30452e363b, type: 3}
 --- !u!114 &3213898759607814754
 MonoBehaviour:
