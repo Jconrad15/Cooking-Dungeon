@@ -8,6 +8,8 @@ public class CombatDisplayer : MonoBehaviour
 {
     private KeyCode attackButton = KeyCode.Space;
 
+    private Animator animator;
+
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
@@ -19,6 +21,8 @@ public class CombatDisplayer : MonoBehaviour
     // Start with combatBox off
     private void Start()
     {
+        animator = GetComponent<Animator>();
+
         playerController = FindAnyObjectByType<PlayerController>();
         playerController.RegisterOnStartCombat(NewCombat);
 
@@ -67,7 +71,7 @@ public class CombatDisplayer : MonoBehaviour
             {
                 Debug.Log("AttackButton");
                 playerCombatant.Attack(otherCombatant);
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.25f);
                 // TODO: FOR NOW, the other combatant
                 // attacks player after being attacked
                 // Check if otherCombatant died

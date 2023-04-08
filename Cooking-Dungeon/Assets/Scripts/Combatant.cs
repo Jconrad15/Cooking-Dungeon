@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Combatant : MonoBehaviour
 {
+    private Animator animator;
+
     private Action<Combatant> cbOnAttack;
 
     public int damageDealt = 1;
@@ -17,12 +19,20 @@ public class Combatant : MonoBehaviour
     private void Start()
     {
         health = GetComponent<Health>();
+        animator = GetComponent<Animator>();
     }
 
     public void Attack(Combatant otherCombatant)
     {
         otherCombatant.health.Hurt(damageDealt);
         cbOnAttack?.Invoke(this);
+
+        // Animation attack
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+
     }
 
     public void RegisterOnAttack(Action<Combatant> callbackfunc)
