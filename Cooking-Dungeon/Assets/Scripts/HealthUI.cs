@@ -11,6 +11,8 @@ public class HealthUI : MonoBehaviour
     private GameObject[] hearts;
     [SerializeField]
     private GameObject[] boards;
+    [SerializeField]
+    private TextMeshProUGUI healthText;
 
     private void Start()
     {
@@ -45,6 +47,8 @@ public class HealthUI : MonoBehaviour
         }
 
         SetHearts(newAmount);
+
+        healthText.SetText(newAmount.ToString() + "/" + MaxHealth);
     }
 
     private void SetBoard(int boardIndex)
