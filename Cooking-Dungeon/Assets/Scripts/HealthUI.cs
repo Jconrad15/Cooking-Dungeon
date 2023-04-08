@@ -8,9 +8,6 @@ public class HealthUI : MonoBehaviour
     private Health playerHealth;
 
     [SerializeField]
-    private TextMeshProUGUI healthText;
-
-    [SerializeField]
     private GameObject[] hearts;
     [SerializeField]
     private GameObject[] boards;
@@ -28,8 +25,6 @@ public class HealthUI : MonoBehaviour
 
     private void OnHealthChanged(int newAmount, bool increased)
     {
-        healthText.SetText(newAmount.ToString());
-
         int MaxHealth = playerHealth.maxHealth;
 
         if (MaxHealth == 12)
