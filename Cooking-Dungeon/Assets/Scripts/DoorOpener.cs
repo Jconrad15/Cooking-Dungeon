@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class DoorOpener : MonoBehaviour
 {
+    private Inventory inventory;
+
+    private void Start()
+    {
+        inventory =
+            FindAnyObjectByType<PlayerController>()
+            .GetComponent<Inventory>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger");
         if (other.gameObject.TryGetComponent(out OpenDoorZone odz))
         {
-            odz.OpenDoor();
+            IngredientData[] neededIngredients =
+                new IngredientData[1] {odz.neededIngredient};
+
+            if (inventory.CheckForIngredients(neededIngredients))
+            {
+                odz.OpenDoor();
+            }
         }
     }
 }
