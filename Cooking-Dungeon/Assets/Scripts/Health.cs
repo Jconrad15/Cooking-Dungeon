@@ -10,8 +10,8 @@ public class Health : MonoBehaviour
     // <amount, increased==true>
     private Action<int, bool> cbOnHealthChanged;
 
-    // Max defaults to 6
-    public int maxHealth = 6;
+    // Max defaults to 12
+    public int maxHealth = 12;
     public int currentHealth;
 
     private void Start()
@@ -37,6 +37,15 @@ public class Health : MonoBehaviour
         {
             currentHealth = maxHealth;
             cbOnHealthChanged?.Invoke(currentHealth, true);
+        }
+    }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        if (maxHealth >= 24)
+        {
+            maxHealth = 24;
         }
     }
 
