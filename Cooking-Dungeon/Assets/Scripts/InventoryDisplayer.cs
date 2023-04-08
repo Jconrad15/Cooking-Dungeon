@@ -110,7 +110,9 @@ public class InventoryDisplayer : MonoBehaviour
         }
 
         // Apply effects of ingredient
+        playerHealth.IncreaseMaxHealth(ingredientData.increaseMaxHealthAmount);
         playerHealth.Heal(ingredientData.healAmount);
+
 
         createdGOs.Remove(ingredientUI.gameObject);
         Destroy(ingredientUI.gameObject);
@@ -125,6 +127,7 @@ public class InventoryDisplayer : MonoBehaviour
         }
 
         // Apply effects of meal
+        playerHealth.IncreaseMaxHealth(mealData.increaseMaxHealthAmount);
         playerHealth.Heal(mealData.healAmount);
 
         createdGOs.Remove(mealUI.gameObject);
