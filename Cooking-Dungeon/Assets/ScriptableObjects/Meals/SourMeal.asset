@@ -18,4 +18,5 @@ MonoBehaviour:
   requiredIngredients:
   - {fileID: 11400000, guid: c982cd75596fd6e46b58dbc4502934ac, type: 2}
   - {fileID: 11400000, guid: fcb89dee1131eaa4992f6915e4f71893, type: 2}
-  healAmount: 4
+  healAmount: 12
+  increaseMaxHealthAmount: 4

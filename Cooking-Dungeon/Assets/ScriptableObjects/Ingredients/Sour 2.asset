@@ -15,4 +15,5 @@ MonoBehaviour:
   name: Sour fingers
   description: Who do these belong to?
   image: {fileID: 21300000, guid: ae51d5974f522cb468a3418998e38154, type: 3}
-  healAmount: 1
+  healAmount: 7
+  increaseMaxHealthAmount: 0

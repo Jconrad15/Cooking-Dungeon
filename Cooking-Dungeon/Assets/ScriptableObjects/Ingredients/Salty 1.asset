@@ -15,4 +15,5 @@ MonoBehaviour:
   name: Salty Filet
   description: Can you even taste the fish?
   image: {fileID: 21300000, guid: a39b5ff6d8428154fb4f0eb8daaa890d, type: 3}
-  healAmount: 1
+  healAmount: 4
+  increaseMaxHealthAmount: 0

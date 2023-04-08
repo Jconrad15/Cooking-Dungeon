@@ -15,4 +15,5 @@ MonoBehaviour:
   name: Sweet Tuft
   description: Fool's cotton candy.
   image: {fileID: 21300000, guid: c98647995d973c64caf354d00d4a72c1, type: 3}
-  healAmount: 1
+  healAmount: 2
+  increaseMaxHealthAmount: 0

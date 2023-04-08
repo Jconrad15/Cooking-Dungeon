@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: SpicyBossIngredients
   m_EditorClassIdentifier: 
-  name: Sweet Tuft
-  description: Fool's cotton candy.
+  name: Everspice
+  description: Colorful chili flakes with a faint heat emanating from them. It is
+    said that this heat is everlasting if eaten.
   image: {fileID: 21300000, guid: 2d407b311cb865544be47f0eb47e843b, type: 3}
   healAmount: 1
+  increaseMaxHealthAmount: 0

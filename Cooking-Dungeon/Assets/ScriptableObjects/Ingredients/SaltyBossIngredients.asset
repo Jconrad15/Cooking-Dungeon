@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: SaltyBossIngredients
   m_EditorClassIdentifier: 
-  name: Sweet Tuft
-  description: Fool's cotton candy.
+  name: Bucket O' Shark Legs
+  description: Girthy crustacean legs and succulent shark tail. Salty snaks pair
+    well with beer at the tavern.
   image: {fileID: 21300000, guid: f417ecea9b2d1764db14055b13a7e482, type: 3}
   healAmount: 1
+  increaseMaxHealthAmount: 0

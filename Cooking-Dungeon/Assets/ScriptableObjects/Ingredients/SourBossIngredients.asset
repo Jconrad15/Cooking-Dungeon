@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: SourBossIngredients
   m_EditorClassIdentifier: 
-  name: Sweet Tuft
-  description: Fool's cotton candy.
+  name: Citrus Jam
+  description: A jam made up of a variety of fermented fruits. Fresh fruity flavor
+    straight from the source.
   image: {fileID: 21300000, guid: eb5b9f48cfae6ef40b754b4e283eae01, type: 3}
   healAmount: 1
+  increaseMaxHealthAmount: 0
