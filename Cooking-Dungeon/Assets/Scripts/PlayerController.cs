@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
 
         actions = new Queue<KeyCode>();
-        string[] layerNames = new string[5]
-        { "Wall", "NPC", "Enemy", "Ingredient", "CookStation" };
+        string[] layerNames = new string[6]
+        { "Wall", "NPC", "Enemy", "Ingredient", "CookStation", "Door" };
         movementMask = LayerMask.GetMask(layerNames);
     }
 
@@ -423,6 +423,10 @@ public class PlayerController : MonoBehaviour
             {
                 cbOnStartCook?.Invoke(CookStation);
                 Debug.Log("StartCooking");
+                return false;
+            }
+            if (other.TryGetComponent(out Door door))
+            {
                 return false;
             }
         }

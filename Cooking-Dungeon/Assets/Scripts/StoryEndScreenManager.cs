@@ -9,25 +9,52 @@ public class StoryEndScreenManager : MonoBehaviour
     [SerializeField]
     private GameObject[] endStoryImages;
 
+    private int currentIndex = 0;
+
     public void Init()
     {
         HideAll();
-        Show(0);
+        currentIndex = 0;
+        Show(currentIndex);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(nextButton))
+        {
+            if (currentIndex == 0)
+            {
+                currentIndex++;
+                Show(currentIndex);
+            }
+            else if(currentIndex == 1)
+            {
+                currentIndex++;
+                Show(currentIndex);
+            }
+/*            else if (currentIndex == 2)
+            {
+                currentIndex++;
+                Show(currentIndex);
+            }*/
+
+        }
+    }
+
 
     public void OptionA()
     {
-        Show(1);
+        Show(3);
     }
 
     public void OptionB()
     {
-        Show(2);
+        Show(4);
     }
 
     public void ShowCredits()
     {
-        Show(3);
+        Show(5);
     }
 
     private void Show(int index)
