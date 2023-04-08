@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: SweetBossIngredient
   m_EditorClassIdentifier: 
-  name: Sweet Tuft
-  description: Fool's cotton candy.
+  name: Crystal Morsel
+  description: A surprisingly delicate treat made up of grotesque ingredients. Sweet
+    dreams await those who consume it.
   image: {fileID: 21300000, guid: 2aabba53a14498a4f9715611d70a96a2, type: 3}
   healAmount: 1
+  increaseMaxHealthAmount: 0

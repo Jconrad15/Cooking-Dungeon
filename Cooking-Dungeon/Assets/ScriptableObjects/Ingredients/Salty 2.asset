@@ -15,4 +15,5 @@ MonoBehaviour:
   name: Salt Crystal
   description: Good old sodium chloride.
   image: {fileID: 21300000, guid: 76d5f71ab9b9b6549993ca541c15d146, type: 3}
-  healAmount: 1
+  healAmount: 5
+  increaseMaxHealthAmount: 0
