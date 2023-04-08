@@ -10,5 +10,5 @@ public class MealData : ScriptableObject
     public Sprite image;
     public IngredientData[] requiredIngredients;
     public int healAmount;
-
+    public int increaseMaxHealthAmount;
 }
