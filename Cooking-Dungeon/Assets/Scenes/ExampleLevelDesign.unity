@@ -37176,6 +37176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   storyEndScreensPrefab: {fileID: 6212188501047425850, guid: 7c2c1d52baaf8ed4a8779cd847513005, type: 3}
+  lastIngredient:
+  - {fileID: 11400000, guid: 37cdedce1fbb87a4a9deae36e0787e81, type: 2}
 --- !u!4 &1390769045
 Transform:
   m_ObjectHideFlags: 0
