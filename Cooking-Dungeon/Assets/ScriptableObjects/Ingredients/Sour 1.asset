@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: Sour 1
   m_EditorClassIdentifier: 
-  name: Sour 1
-  description: This is a Sour 1
+  name: Sliced citrus
+  description: Goes well in a smoothy.
   image: {fileID: 21300000, guid: 0af0606f5b539534d92bfcfcd83f2a24, type: 3}
   healAmount: 1

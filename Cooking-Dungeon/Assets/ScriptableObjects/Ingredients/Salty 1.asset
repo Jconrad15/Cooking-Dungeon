@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: Salty 1
   m_EditorClassIdentifier: 
-  name: Salty 1
-  description: This is a Salty 1
+  name: Salty Filet
+  description: Can you even taste the fish?
   image: {fileID: 21300000, guid: a39b5ff6d8428154fb4f0eb8daaa890d, type: 3}
   healAmount: 1

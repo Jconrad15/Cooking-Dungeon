@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: Spicy 1
   m_EditorClassIdentifier: 
-  name: Spicy 1
-  description: This is a Spicy 1
+  name: Pepper bits
+  description: Perfect for mouth melting nachos.
   image: {fileID: 21300000, guid: 85d936fdc9b7e89429e45c5f28bab733, type: 3}
   healAmount: 1

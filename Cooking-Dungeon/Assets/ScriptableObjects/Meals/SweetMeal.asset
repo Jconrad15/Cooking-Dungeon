@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ecb0adfcc6e4545a715658e91a6124, type: 3}
   m_Name: SweetMeal
   m_EditorClassIdentifier: 
-  name: Sweet Meal
-  description: This is a sweet meal
+  name: Fluffy treat
+  description: For when you need that next rush.
   image: {fileID: 21300000, guid: 5731f671f965b584b974e200cddc0110, type: 3}
   requiredIngredients:
   - {fileID: 11400000, guid: 12a6b624a6983a34ba559429595c3240, type: 2}
