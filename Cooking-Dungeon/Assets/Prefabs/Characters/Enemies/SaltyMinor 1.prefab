@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 7476358739167208746, guid: ad955eb4f4432f14684160c00372f444, type: 3}
-  maxHealth: 6
+  maxHealth: 10
   currentHealth: 0
 --- !u!114 &9009482884644388959
 MonoBehaviour:

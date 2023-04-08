@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 7476358739167208746, guid: ad955eb4f4432f14684160c00372f444, type: 3}
-  maxHealth: 6
+  maxHealth: 14
   currentHealth: 0
 --- !u!114 &9009482884644388959
 MonoBehaviour:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeef6bc774483429f3d605bed73106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageDealt: 1
+  damageDealt: 2
   combatantName: 
   health: {fileID: 2437176002597608007}
   droppedIngredientPrefab: {fileID: 5553807133678367505, guid: 567b096f8341bc641843c808bcf49fb2, type: 3}
