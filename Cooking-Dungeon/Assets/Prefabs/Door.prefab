@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6610644259835693211}
   - component: {fileID: 7654772748538136360}
   - component: {fileID: 3955303165106876321}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6990254244805963474}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7152620105185141148}
   - component: {fileID: 8695070826850571912}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 557904964176078705}
   - component: {fileID: 4331242104117924629}
   - component: {fileID: 7655998517931732323}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: NoSwitchZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
