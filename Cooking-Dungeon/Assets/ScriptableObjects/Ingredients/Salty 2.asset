@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: Salty 2
   m_EditorClassIdentifier: 
-  name: Salty 2
-  description: This is a Salty 2
+  name: Salt Crystal
+  description: Good old sodium chloride.
   image: {fileID: 21300000, guid: 76d5f71ab9b9b6549993ca541c15d146, type: 3}
   healAmount: 1

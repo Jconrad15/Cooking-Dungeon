@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b22632241917479e2ccf32c967d69, type: 3}
   m_Name: Sour 2
   m_EditorClassIdentifier: 
-  name: Sour 2
-  description: This is a Sour 2
+  name: Sour fingers
+  description: Who do these belong to?
   image: {fileID: 21300000, guid: ae51d5974f522cb468a3418998e38154, type: 3}
   healAmount: 1
