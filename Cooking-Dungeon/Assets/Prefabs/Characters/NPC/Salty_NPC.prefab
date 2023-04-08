@@ -82,12 +82,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - 
-  - 
+  - Bring me a salty snack, would ye?
   wantedMealData: {fileID: 11400000, guid: 8a20e64bd5eb8f0418e9f7832009e944, type: 2}
   receiveMealDialogue:
-  - 
-  - 
+  - Much obliged, me heartie...
+  - Fair winds to ye.
   poofParticlesPrefab: {fileID: 7476358739167208746, guid: a53e5e45f2d1479438912e30452e363b, type: 3}
 --- !u!114 &3213898759607814754
 MonoBehaviour:
