@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c382ad8bd36696146bb67f4c2f66b1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnSurface: 1
+  isOnSurface: 0
 --- !u!65 &5376027087972212360
 BoxCollider:
   m_ObjectHideFlags: 0
