@@ -7,13 +7,10 @@ public class OpenDoorZone : MonoBehaviour
     [SerializeField]
     private Door door;
 
-    private void OnTriggerEnter(Collider other)
+    public void OpenDoor()
     {
-        if (other.gameObject.TryGetComponent(out PlayerController pc))
-        {
-            Destroy(door);
-            Destroy(gameObject);
-        }
+        door.OpenDoor();
+        Destroy(gameObject);
     }
 
 
