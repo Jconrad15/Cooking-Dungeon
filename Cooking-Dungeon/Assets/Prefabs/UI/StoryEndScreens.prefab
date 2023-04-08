@@ -536,8 +536,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -281.40765}
-  m_SizeDelta: {x: 900, y: 337.1847}
+  m_AnchoredPosition: {x: 0, y: -354}
+  m_SizeDelta: {x: 1570.0378, y: 305.5791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1857538946358822003
 CanvasRenderer:
@@ -567,7 +567,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ending B
+  m_text: "The feast made of the Heart and its guardians was sumptuous, decadent,
+    and depraved. All of the village partook of the feast, and in the following weeks
+    after, all of the village perished as a result of the Chef's folly. \r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1875,8 +1877,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -281.40765}
-  m_SizeDelta: {x: 900, y: 337.1847}
+  m_AnchoredPosition: {x: 0, y: -354}
+  m_SizeDelta: {x: 1570.0378, y: 305.5791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9076382701537533053
 CanvasRenderer:
@@ -1906,7 +1908,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ending A
+  m_text: 'The chef, now understanding the true power of the Heart of the Dungeon,
+    laid the essence of the guardians of the dungeon beneath the resplendent boughs
+    of the tree and returned to the village, eager to cook for their kin forevermore.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2224,8 +2230,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -281.40765}
-  m_SizeDelta: {x: 900, y: 337.1847}
+  m_AnchoredPosition: {x: 0, y: -354}
+  m_SizeDelta: {x: 1570.0378, y: 305.5791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7351680447351813577
 CanvasRenderer:
@@ -2255,7 +2261,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Story End Screen 1
+  m_text: Sensing the essence of the 4 dungeon guardians, a portal opens itself to
+    the Chef beckoning them inside. A sense of foreboding fills the Chef as they
+    walk through the vibrant portal.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3073,8 +3081,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -281.40765}
-  m_SizeDelta: {x: 900, y: 337.1847}
+  m_AnchoredPosition: {x: 0, y: -354}
+  m_SizeDelta: {x: 1570.0378, y: 305.5791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4062475263930314690
 CanvasRenderer:
@@ -3104,7 +3112,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Story End Screen 1
+  m_text: With the acquisition of the Everspice, the Chef's quest is coming to a
+    close. The power of the Heart draws ever closer.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3342,8 +3351,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -281.40765}
-  m_SizeDelta: {x: 900, y: 337.1847}
+  m_AnchoredPosition: {x: 0, y: -354}
+  m_SizeDelta: {x: 1570.0378, y: 305.5791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1011292612005692212
 CanvasRenderer:
@@ -3373,7 +3382,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Story End Screen 1
+  m_text: '"I am the ''Heart of the Dungeon" a voice like chiming bells rings softly
+    around in the Chef''s head. "My power is what nurtures these halls and gives
+    you and your kind precious sustenance and vigor. Without my vital essence, these
+    halls will rot and so will your kin. You, who seeks power. You, who has nurtured
+    your kin. You, who stands between LIFE and DEATH, what do you seek from me?"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
