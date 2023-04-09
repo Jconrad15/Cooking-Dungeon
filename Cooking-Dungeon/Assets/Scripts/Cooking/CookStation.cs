@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CookStation : MonoBehaviour
@@ -16,12 +14,15 @@ public class CookStation : MonoBehaviour
 
     private void OnCook()
     {
+        CreateParticles();
+    }
+
+    private void CreateParticles()
+    {
         GameObject particles = Instantiate(cookParticles);
         PlayerController pc = FindAnyObjectByType<PlayerController>();
         particles.transform.position = pc.transform.position;
         particles.transform.rotation =
             Quaternion.LookRotation(transform.up);
     }
-
-
 }

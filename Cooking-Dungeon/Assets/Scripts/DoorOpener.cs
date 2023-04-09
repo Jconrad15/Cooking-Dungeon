@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The door opener is attached to the player to open doors.
+/// </summary>
 public class DoorOpener : MonoBehaviour
 {
     private Inventory inventory;
@@ -15,16 +16,20 @@ public class DoorOpener : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
         if (other.gameObject.TryGetComponent(out OpenDoorZone odz))
         {
-            IngredientData[] neededIngredients =
-                new IngredientData[1] {odz.neededIngredient};
+            TryOpenDoor(odz);
+        }
+    }
 
-            if (inventory.CheckForIngredients(neededIngredients))
-            {
-                odz.OpenDoor();
-            }
+    private void TryOpenDoor(OpenDoorZone odz)
+    {
+        IngredientData[] neededIngredients =
+            new IngredientData[1] { odz.neededIngredient };
+
+        if (inventory.CheckForIngredients(neededIngredients))
+        {
+            odz.OpenDoor();
         }
     }
 }

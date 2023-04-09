@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class NoSwitchZone : MonoBehaviour
-{
-
-
-}
+public class NoSwitchZone : MonoBehaviour { }

@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
 
         actions = new Queue<KeyCode>();
+        InitializeMovementMask();
+    }
+
+    private void InitializeMovementMask()
+    {
         string[] layerNames = new string[6]
         { "Wall", "NPC", "Enemy", "Ingredient", "CookStation", "Door" };
         movementMask = LayerMask.GetMask(layerNames);
@@ -64,10 +69,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (movementDisabled)
-        {
-            return;
-        }
+        if (movementDisabled) { return; }
 
         CheckForInput();
 
@@ -78,7 +80,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Check if the player hits a set key
+    /// Check if the player hits a key
     /// </summary>
     private void CheckForInput()
     {
@@ -91,6 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             actions.Enqueue(forward);
         }
+
         if (Input.GetKeyDown(backward))
         {
             actions.Enqueue(backward);
@@ -100,6 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             actions.Enqueue(left);
         }
+
         if (Input.GetKeyDown(right))
         {
             actions.Enqueue(right);
@@ -109,6 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             actions.Enqueue(turnLeft);
         }
+
         if (Input.GetKeyDown(turnRight))
         {
             actions.Enqueue(turnRight);
@@ -122,7 +127,6 @@ public class PlayerController : MonoBehaviour
     {
         if (actions.Count == 0)
         {
-            //Debug.Log("No actions queued");
             isMoving = false;
             return;
         }
@@ -165,8 +169,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveForward()
     {
-        bool canMove = CanMoveDirection(Direction.Forward);
-        if (canMove == false) { return; }
+        if (CanMoveDirection(Direction.Forward) == false) { return; }
         Vector3 endLocation = transform.position + (floorSize * transform.forward);
         cbOnMove?.Invoke();
         StartCoroutine(LerpToPosition(transform.position, endLocation));
@@ -174,8 +177,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveBackward()
     {
-        bool canMove = CanMoveDirection(Direction.Backward);
-        if (canMove == false) { return; }
+        if (CanMoveDirection(Direction.Backward) == false) { return; }
         Vector3 endLocation = transform.position - (floorSize * transform.forward);
         cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
@@ -183,8 +185,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveLeft()
     {
-        bool canMove = CanMoveDirection(Direction.Left);
-        if (canMove == false) { return; }
+        if (CanMoveDirection(Direction.Left) == false) { return; }
         Vector3 endLocation = transform.position - (floorSize * transform.right);
         cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
@@ -192,8 +193,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveRight()
     {
-        bool canMove = CanMoveDirection(Direction.Right);
-        if (canMove == false) { return; }
+        if (CanMoveDirection(Direction.Right) == false) { return; }
         Vector3 endLocation = transform.position + (floorSize * transform.right);
         cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
@@ -201,22 +201,23 @@ public class PlayerController : MonoBehaviour
 
     private void TurnLeft()
     {
-        Quaternion endRotation = transform.rotation * Quaternion.Euler(0, -90, 0);
+        Quaternion endRotation =
+            transform.rotation * Quaternion.Euler(0, -90, 0);
         cbOnRotate?.Invoke();
         StartCoroutine(LerpToRotation(transform.rotation, endRotation));
     }
 
     private void TurnRight()
     {
-        Quaternion endRotation = transform.rotation * Quaternion.Euler(0, 90, 0);
+        Quaternion endRotation =
+            transform.rotation * Quaternion.Euler(0, 90, 0);
         cbOnRotate?.Invoke();
         StartCoroutine(LerpToRotation(transform.rotation, endRotation));
     }
 
     private void SwitchWorlds()
     {
-        bool canSwitch = CanSwitchHere();
-        if (canSwitch == false)
+        if (CanSwitchWorldsHere() == false)
         {
             Debug.Log("Cannot switch here");
             return;
@@ -226,7 +227,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(LerpToFlip());
     }
 
-    private bool CanSwitchHere()
+    private bool CanSwitchWorldsHere()
     {
         Vector3 currentLocation = transform.position;
         currentLocation.y += currentOffset;
@@ -257,7 +258,7 @@ public class PlayerController : MonoBehaviour
 
     public void EnableMovement()
     {
-        StartCoroutine(EnableMovementDelayed());
+        _ = StartCoroutine(EnableMovementDelayed());
     }
 
     private IEnumerator EnableMovementDelayed()
@@ -285,7 +286,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        // Hard set end location incase things end weirdly
+        // Hard set end location in case things end weirdly
         transform.position = endLocation;
         isMoving = false;
     }
@@ -309,7 +310,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        // Hard set end location incase things end weirdly
+        // Hard set end location in case things end weirdly
         transform.rotation = endRotation;
         isMoving = false;
     }
@@ -317,7 +318,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator LerpToFlip()
     {
         Quaternion startRotation = transform.rotation;
-        Quaternion endRotation = transform.rotation * Quaternion.Euler(0, 0, 180f);
+        Quaternion endRotation =
+            transform.rotation * Quaternion.Euler(0, 0, 180f);
 
         isMoving = true;
 
@@ -392,7 +394,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check for colliders in the target location
-        if (Physics.Linecast(current, target, out RaycastHit hitInfo, movementMask))
+        if (Physics.Linecast(
+            current, target, out RaycastHit hitInfo, movementMask))
         {
             GameObject other = hitInfo.collider.gameObject;
             // Try to get components in other gameobject
@@ -401,32 +404,38 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Blocked by wall");
                 return false;
             }
+
             if (other.TryGetComponent(out NPC npc))
             {
                 cbOnStartTalkToNPC?.Invoke(npc);
                 Debug.Log("TalkToNPC");
                 return false;
             }
+
             if (other.TryGetComponent(out Combatant combatant))
             {
                 cbOnStartCombat?.Invoke(combatant);
                 Debug.Log("StartCombat");
                 return false;
             }
+
             if (other.TryGetComponent(out Ingredient ingredient))
             {
                 cbOnRunIntoItem?.Invoke(ingredient);
                 Debug.Log("RunIntoItem");
                 return false;
             }
+
             if (other.TryGetComponent(out CookStation CookStation))
             {
                 cbOnStartCook?.Invoke(CookStation);
                 Debug.Log("StartCooking");
                 return false;
             }
+
             if (other.TryGetComponent(out Door door))
             {
+                Debug.Log("Blocked by door");
                 return false;
             }
         }

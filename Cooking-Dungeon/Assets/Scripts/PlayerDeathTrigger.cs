@@ -14,7 +14,7 @@ public class PlayerDeathTrigger : MonoBehaviour
         Debug.Log("PlayerDied");
         pc.DisableMovement();
 
-        Instantiate(deathScreenPrefab, canvas.transform);
+        _ = Instantiate(deathScreenPrefab, canvas.transform);
     }
 
 

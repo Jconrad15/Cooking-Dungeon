@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OpenDoorZone : MonoBehaviour
@@ -15,8 +13,5 @@ public class OpenDoorZone : MonoBehaviour
         door.OpenDoor();
         Destroy(gameObject);
     }
-
-
-
 
 }

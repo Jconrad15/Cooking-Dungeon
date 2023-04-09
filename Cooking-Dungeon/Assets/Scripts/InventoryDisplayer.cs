@@ -18,6 +18,7 @@ public class InventoryDisplayer : MonoBehaviour
 
     private Inventory inventory;
     private Health playerHealth;
+    private Combatant playerCombatant;
 
     private List<GameObject> createdGOs;
 
@@ -27,9 +28,9 @@ public class InventoryDisplayer : MonoBehaviour
     {
         createdGOs = new List<GameObject>();
         inventory = FindAnyObjectByType<Inventory>();
-        playerHealth =
-            FindAnyObjectByType<PlayerController>()
-            .GetComponent<Health>();
+        PlayerController pc = FindAnyObjectByType<PlayerController>();
+        playerHealth = pc.GetComponent<Health>();
+        playerCombatant = pc.GetComponent<Combatant>();
         HideInventory();
     }
 
@@ -127,6 +128,7 @@ public class InventoryDisplayer : MonoBehaviour
         }
 
         // Apply effects of meal
+        playerCombatant.IncreaseDamageDealt(mealData.increaseDamageDealt);
         playerHealth.IncreaseMaxHealth(mealData.increaseMaxHealthAmount);
         playerHealth.Heal(mealData.healAmount);
 

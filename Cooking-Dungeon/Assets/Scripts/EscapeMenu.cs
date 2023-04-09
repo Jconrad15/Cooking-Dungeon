@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EscapeMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject escapeMenu;
-
 
     private bool isOpen;
     private PlayerController playerController;
@@ -38,8 +34,8 @@ public class EscapeMenu : MonoBehaviour
             isOpen = true;
             playerController.DisableMovement();
         }
-        escapeMenu.SetActive(isOpen);
 
+        escapeMenu.SetActive(isOpen);
     }
 
 

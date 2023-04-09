@@ -95,7 +95,6 @@ public class Inventory : MonoBehaviour
             {
                 if (ingredients[j].name == neededIngredients[i].name)
                 {
-                    //ingredients.Remove(ingredients[j]);
                     checks[i] = true;
                     break;
                 }
