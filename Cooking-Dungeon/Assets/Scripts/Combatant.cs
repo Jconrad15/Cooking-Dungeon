@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Combatant : MonoBehaviour
@@ -32,7 +31,11 @@ public class Combatant : MonoBehaviour
         {
             animator.SetTrigger("Attack");
         }
+    }
 
+    public void IncreaseDamageDealt(int increaseAmount)
+    {
+        damageDealt += increaseAmount;
     }
 
     public void RegisterOnAttack(Action<Combatant> callbackfunc)

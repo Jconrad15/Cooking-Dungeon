@@ -45,9 +45,13 @@ public class HealthUI : MonoBehaviour
         {
             SetBoard(3);
         }
+        else
+        {
+            SetBoard(0);
+            Debug.Log("Should not happen unless there is a code logic mistake");
+        }
 
         SetHearts(newAmount);
-
         healthText.SetText(newAmount.ToString() + "/" + MaxHealth);
     }
 

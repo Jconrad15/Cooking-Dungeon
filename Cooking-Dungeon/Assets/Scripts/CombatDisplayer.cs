@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class CombatDisplayer : MonoBehaviour
 {
-    private KeyCode attackButton = KeyCode.Space;
-
-    private Animator animator;
+    private readonly KeyCode attackButton = KeyCode.Space;
 
     [SerializeField]
     private TextMeshProUGUI text;
@@ -20,8 +18,6 @@ public class CombatDisplayer : MonoBehaviour
     // Start with combatBox off
     private void Start()
     {
-        animator = GetComponent<Animator>();
-
         playerController = FindAnyObjectByType<PlayerController>();
         playerController.RegisterOnStartCombat(NewCombat);
 
@@ -42,7 +38,7 @@ public class CombatDisplayer : MonoBehaviour
         ShowText(otherCombatant.combatantName);
         yield return new WaitForSeconds(0.1f);
 
-        // TODO: combat goes here
+        // Combat goes here
         bool done = false;
         while (done == false)
         {
@@ -57,20 +53,15 @@ public class CombatDisplayer : MonoBehaviour
             if (playerCombatant == null)
             {
                 Debug.Log("Player Died");
-                // TODO: Gameover screen
-            }
-
-            /*if (Input.GetKeyDown(KeyCode.Escape))
-            {
                 done = true;
                 break;
-            }*/
+            }
 
             if (Input.GetKeyDown(attackButton))
             {
                 Debug.Log("AttackButton");
                 playerCombatant.Attack(otherCombatant);
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.4f);
                 // TODO: FOR NOW, the other combatant
                 // attacks player after being attacked
                 // Check if otherCombatant died
