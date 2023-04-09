@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    private KeyCode inventoryToggleButton = KeyCode.I;
+    private readonly KeyCode inventoryToggleButton = KeyCode.I;
 
     private InventoryDisplayer inventoryDisplayer;
 

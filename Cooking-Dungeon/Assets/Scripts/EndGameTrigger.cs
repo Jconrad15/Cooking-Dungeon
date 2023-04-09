@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EndGameTrigger : MonoBehaviour
@@ -31,7 +29,6 @@ public class EndGameTrigger : MonoBehaviour
         {
             TriggerEnd();
         }
-
     }
 
     public void TriggerEnd()

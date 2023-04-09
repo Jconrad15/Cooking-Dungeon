@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -51,18 +50,14 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        CreateDeathParticles();
+
         // Different death processing for player
         if (TryGetComponent(out PlayerController pc))
         {
             FindAnyObjectByType<PlayerDeathTrigger>().PlayerDied(pc);
             return;
         }
-
-        // Particle effect
-        GameObject particles = Instantiate(deathParticles);
-        particles.transform.position = transform.position;
-        particles.transform.rotation =
-            Quaternion.LookRotation(transform.up);
 
         // Check if this character drops an ingredient on death
         if (TryGetComponent(out Combatant c))
@@ -78,6 +73,14 @@ public class Health : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void CreateDeathParticles()
+    {
+        GameObject particles = Instantiate(deathParticles);
+        particles.transform.position = transform.position;
+        particles.transform.rotation =
+            Quaternion.LookRotation(transform.up);
     }
 
     public void RegisterOnHealthChanged(Action<int, bool> callbackfunc)
