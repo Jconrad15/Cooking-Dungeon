@@ -5,27 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private int floorSize = 1;
-
-    private KeyCode forward = KeyCode.W;
-    private KeyCode backward = KeyCode.S;
-
-    private KeyCode left = KeyCode.A;
-    private KeyCode right = KeyCode.D;
-
-    private KeyCode turnLeft = KeyCode.Q;
-    private KeyCode turnRight = KeyCode.E;
-
-    private KeyCode flip = KeyCode.Space;
-
     [SerializeField]
     private GameObject surfaceWorld;
     [SerializeField]
     private GameObject dungeonWorld;
 
     private bool isOnSurface;
-    private float surfaceOffset = 0.5f;
-    private float dungeonOffset = -0.5f;
+    private readonly float surfaceOffset = 0.5f;
+    private readonly float dungeonOffset = -0.5f;
     private float currentOffset;
 
     private Queue<KeyCode> actions;
@@ -33,8 +20,8 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private bool movementDisabled;
 
-    private float moveDuration = 0.2f;
-    private float flipDuration = 1f;
+    private readonly float moveDuration = 0.2f;
+    private readonly float flipDuration = 1f;
 
     private Action cbOnMove;
     private Action cbOnRotate;
@@ -84,39 +71,39 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void CheckForInput()
     {
-        if (Input.GetKeyDown(flip))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.FlipKey))
         {
-            actions.Enqueue(flip);
+            actions.Enqueue(InputKeyCodes.Instance.FlipKey);
         }
 
-        if (Input.GetKeyDown(forward))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.ForwardKey))
         {
-            actions.Enqueue(forward);
+            actions.Enqueue(InputKeyCodes.Instance.ForwardKey);
         }
 
-        if (Input.GetKeyDown(backward))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.BackwardKey))
         {
-            actions.Enqueue(backward);
+            actions.Enqueue(InputKeyCodes.Instance.BackwardKey);
         }
 
-        if (Input.GetKeyDown(left))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.LeftKey))
         {
-            actions.Enqueue(left);
+            actions.Enqueue(InputKeyCodes.Instance.LeftKey);
         }
 
-        if (Input.GetKeyDown(right))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.RightKey))
         {
-            actions.Enqueue(right);
+            actions.Enqueue(InputKeyCodes.Instance.RightKey);
         }
 
-        if (Input.GetKeyDown(turnLeft))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.TurnLeftKey))
         {
-            actions.Enqueue(turnLeft);
+            actions.Enqueue(InputKeyCodes.Instance.TurnLeftKey);
         }
 
-        if (Input.GetKeyDown(turnRight))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.TurnRightKey))
         {
-            actions.Enqueue(turnRight);
+            actions.Enqueue(InputKeyCodes.Instance.TurnRightKey);
         }
     }
 
@@ -133,31 +120,31 @@ public class PlayerController : MonoBehaviour
 
         KeyCode nextAction = actions.Dequeue();
 
-        if (nextAction == forward)
+        if (nextAction == InputKeyCodes.Instance.ForwardKey)
         {
             MoveForward();
         }
-        else if (nextAction == backward)
+        else if (nextAction == InputKeyCodes.Instance.BackwardKey)
         {
             MoveBackward();
         }
-        else if (nextAction == left)
+        else if (nextAction == InputKeyCodes.Instance.LeftKey)
         {
             MoveLeft();
         }
-        else if (nextAction == right)
+        else if (nextAction == InputKeyCodes.Instance.RightKey)
         {
             MoveRight();
         }
-        else if (nextAction == turnLeft)
+        else if (nextAction == InputKeyCodes.Instance.TurnLeftKey)
         {
             TurnLeft();
         }
-        else if (nextAction == turnRight)
+        else if (nextAction == InputKeyCodes.Instance.TurnRightKey)
         {
             TurnRight();
         }
-        else if (nextAction == flip)
+        else if (nextAction == InputKeyCodes.Instance.FlipKey)
         {
             SwitchWorlds();
         }
@@ -170,7 +157,7 @@ public class PlayerController : MonoBehaviour
     private void MoveForward()
     {
         if (CanMoveDirection(Direction.Forward) == false) { return; }
-        Vector3 endLocation = transform.position + (floorSize * transform.forward);
+        Vector3 endLocation = transform.position + transform.forward;
         cbOnMove?.Invoke();
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
@@ -178,7 +165,7 @@ public class PlayerController : MonoBehaviour
     private void MoveBackward()
     {
         if (CanMoveDirection(Direction.Backward) == false) { return; }
-        Vector3 endLocation = transform.position - (floorSize * transform.forward);
+        Vector3 endLocation = transform.position - transform.forward;
         cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
@@ -186,7 +173,7 @@ public class PlayerController : MonoBehaviour
     private void MoveLeft()
     {
         if (CanMoveDirection(Direction.Left) == false) { return; }
-        Vector3 endLocation = transform.position - (floorSize * transform.right);
+        Vector3 endLocation = transform.position - transform.right;
         cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
@@ -194,7 +181,7 @@ public class PlayerController : MonoBehaviour
     private void MoveRight()
     {
         if (CanMoveDirection(Direction.Right) == false) { return; }
-        Vector3 endLocation = transform.position + (floorSize * transform.right);
+        Vector3 endLocation = transform.position + transform.right;
         cbOnMove?.Invoke(); 
         StartCoroutine(LerpToPosition(transform.position, endLocation));
     }
@@ -373,22 +360,22 @@ public class PlayerController : MonoBehaviour
         switch (d)
         {
             case Direction.Forward:
-                target += (floorSize * transform.forward);
+                target += transform.forward;
                 //Debug.DrawRay(current, transform.forward, Color.green, 3);
                 break;
 
             case Direction.Backward:
-                target -= (floorSize * transform.forward);
+                target -= transform.forward;
                 //Debug.DrawRay(current, -transform.forward, Color.green, 3);
                 break;
 
             case Direction.Left:
-                target -= (floorSize * transform.right);
+                target -= transform.right;
                 //Debug.DrawRay(current, -transform.right, Color.green, 3);
                 break;
 
             case Direction.Right:
-                target += (floorSize * transform.right);
+                target += transform.right;
                 //Debug.DrawRay(current, transform.right, Color.green, 3);
                 break;
         }
