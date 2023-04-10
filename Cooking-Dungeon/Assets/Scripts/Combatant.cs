@@ -13,7 +13,7 @@ public class Combatant : MonoBehaviour
     public Health health;
 
     [SerializeField]
-    public GameObject droppedIngredientPrefab;
+    private GameObject droppedIngredientPrefab;
 
     private void Start()
     {
@@ -30,6 +30,23 @@ public class Combatant : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Attack");
+        }
+    }
+
+    public void DropIngredient()
+    {
+        if (droppedIngredientPrefab != null)
+        {
+            GameObject ingredient = Instantiate(
+                droppedIngredientPrefab);
+            ingredient.transform.position = transform.position;
+
+            FaceCamera iFaceCamera =
+                ingredient.GetComponent<FaceCamera>();
+            FaceCamera combatantFaceCamera =
+                GetComponent<FaceCamera>();
+            iFaceCamera.SetIsOnSurface(
+                combatantFaceCamera.CheckIsOnSurface());
         }
     }
 

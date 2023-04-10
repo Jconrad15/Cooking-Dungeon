@@ -62,14 +62,7 @@ public class Health : MonoBehaviour
         // Check if this character drops an ingredient on death
         if (TryGetComponent(out Combatant c))
         {
-            if (c.droppedIngredientPrefab != null)
-            {
-                GameObject ingredient = Instantiate(
-                    c.droppedIngredientPrefab);
-                ingredient.transform.position = transform.position;
-                ingredient.GetComponent<FaceCamera>()
-                    .SetIsOnSurface(false);
-            }
+            c.DropIngredient();
         }
 
         Destroy(gameObject);
