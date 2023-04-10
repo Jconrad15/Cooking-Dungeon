@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
 {
-    private readonly KeyCode attackButton = KeyCode.Space;
-
     private PlayerController playerController;
     private Combatant playerCombatant;
 
     private Action cbOnCombatDone;
-
+    
     // Start with combatBox off
     private void Start()
     {
@@ -49,7 +47,7 @@ public class CombatSystem : MonoBehaviour
                 break;
             }
 
-            if (Input.GetKeyDown(attackButton))
+            if (Input.GetKeyDown(InputKeyCodes.Instance.AttackKey))
             {
                 Debug.Log("AttackButton");
                 playerCombatant.Attack(otherCombatant);

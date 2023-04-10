@@ -39,8 +39,8 @@ public class CookingDisplayer : MonoBehaviour
         while (done == false)
         {
 
-            if (Input.GetKeyDown(KeyCode.Escape) ||
-                Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(InputKeyCodes.Instance.EscapeKey) ||
+                Input.GetKeyDown(InputKeyCodes.Instance.BackKey))
             {
                 done = true;
                 break;
@@ -95,7 +95,6 @@ public class CookingDisplayer : MonoBehaviour
             Debug.Log("Not Cooked");
             cbOnFailedToCook?.Invoke();
         }
-
     }
 
     public void RegisterOnCooked(Action callbackfunc)

@@ -4,9 +4,6 @@ using TMPro;
 
 public class DialogueDisplayer : MonoBehaviour
 {
-    private KeyCode nextButtonA = KeyCode.Space;
-    private KeyCode nextButtonB = KeyCode.S;
-
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
@@ -59,8 +56,8 @@ public class DialogueDisplayer : MonoBehaviour
             bool done = false;
             while (done == false)
             {
-                if (Input.GetKeyDown(nextButtonA) ||
-                    Input.GetKeyDown(nextButtonB))
+                if (Input.GetKeyDown(
+                    InputKeyCodes.Instance.DialogueNextKey))
                 {
                     index++;
                     if (index >= dialogue.Length)
@@ -135,8 +132,8 @@ public class DialogueDisplayer : MonoBehaviour
             bool done = false;
             while (done == false)
             {
-                if (Input.GetKeyDown(nextButtonA) ||
-                    Input.GetKeyDown(nextButtonB))
+                if (Input.GetKeyDown(
+                    InputKeyCodes.Instance.DialogueNextKey))
                 {
                     index++;
                     if (index >= dialogue.Length)
