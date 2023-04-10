@@ -35,8 +35,8 @@ public class Health : MonoBehaviour
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
-            cbOnHealthChanged?.Invoke(currentHealth, true);
         }
+        cbOnHealthChanged?.Invoke(currentHealth, true);
     }
 
     public void IncreaseMaxHealth(int amount)
