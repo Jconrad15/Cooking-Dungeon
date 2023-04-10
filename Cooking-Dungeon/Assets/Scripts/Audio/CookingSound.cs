@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -24,7 +22,6 @@ public class CookingSound : MonoBehaviour
     private void OnCook()
     {
         audioSource.PlayOneShot(cook);
-        Debug.Log("PlayCookSound");
     }
 
     private void OnFailedToCook()

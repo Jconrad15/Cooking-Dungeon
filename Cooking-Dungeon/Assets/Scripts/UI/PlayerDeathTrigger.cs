@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDeathTrigger : MonoBehaviour
@@ -11,9 +9,7 @@ public class PlayerDeathTrigger : MonoBehaviour
 
     public void PlayerDied(PlayerController pc)
     {
-        Debug.Log("PlayerDied");
         pc.DisableMovement();
-
         _ = Instantiate(deathScreenPrefab, canvas.transform);
     }
 
