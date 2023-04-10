@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class CombatSystem : MonoBehaviour
     private PlayerController playerController;
     private Combatant playerCombatant;
 
+    private Action cbOnCombatDone;
 
     // Start with combatBox off
     private void Start()
@@ -69,6 +71,17 @@ public class CombatSystem : MonoBehaviour
         }
         yield return new WaitForSeconds(0.1f);
         //Debug.Log("Combat Done");
+        cbOnCombatDone?.Invoke();
         playerController.EnableMovement();
+    }
+
+    public void RegisterOnCombatDone(Action callbackfunc)
+    {
+        cbOnCombatDone += callbackfunc;
+    }
+
+    public void UnregisterOnCombatDone(Action callbackfunc)
+    {
+        cbOnCombatDone -= callbackfunc;
     }
 }

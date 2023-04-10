@@ -11,16 +11,24 @@ public class CombatUI : MonoBehaviour
     // Start with combatBox off
     private void Start()
     {
-        FindAnyObjectByType<PlayerController>().
-            RegisterOnStartCombat(NewCombat);
+        FindAnyObjectByType<PlayerController>()
+            .RegisterOnStartCombat(NewCombat);
+
+        FindAnyObjectByType<CombatSystem>()
+            .RegisterOnCombatDone(OnCombatDone);
 
         combatUI.SetActive(false);
     }
 
-    public void NewCombat(Combatant otherCombatant)
+    private void NewCombat(Combatant otherCombatant)
     {
         ShowCombatUI();
         ShowText(otherCombatant);
+    }
+
+    private void OnCombatDone()
+    {
+        HideCombatUI();
     }
 
     private void ShowText(Combatant otherCombatant)
