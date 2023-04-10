@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     private GameObject dungeonWorld;
 
     private bool isOnSurface;
-    private float surfaceOffset = 0.5f;
-    private float dungeonOffset = -0.5f;
+    private readonly float surfaceOffset = 0.5f;
+    private readonly float dungeonOffset = -0.5f;
     private float currentOffset;
 
     private Queue<KeyCode> actions;
@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private bool movementDisabled;
 
-    private float moveDuration = 0.2f;
-    private float flipDuration = 1f;
+    private readonly float moveDuration = 0.2f;
+    private readonly float flipDuration = 1f;
 
     private Action cbOnMove;
     private Action cbOnRotate;
