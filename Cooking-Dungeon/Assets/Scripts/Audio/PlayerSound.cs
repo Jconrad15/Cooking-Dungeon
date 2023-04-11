@@ -33,7 +33,7 @@ public class PlayerSound : MonoBehaviour
         // Register to callbacks
         PlayerController pc = FindAnyObjectByType<PlayerController>();
         pc.RegisterOnMove(OnMove);
-        pc.RegisterOnFlip(OnFlip);
+        pc.RegisterOnStartFlip(OnFlip);
         pc.RegisterOnRotate(OnRotate);
         pc.RegisterOnRunIntoItem(OnRunIntoItem);
         pc.RegisterOnStartCombat(OnStartCombat);

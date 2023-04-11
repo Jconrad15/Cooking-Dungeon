@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject dungeonWorld;
 
-    private bool isOnSurface;
+    public bool IsOnSurface { get; private set; } = true;
     private readonly float surfaceOffset = 0.5f;
     private readonly float dungeonOffset = -0.5f;
     private float currentOffset;
@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private Action cbOnMove;
     private Action cbOnRotate;
-    private Action cbOnFlip;
+    private Action cbOnStartFlip;
+    private Action cbOnEndFlip;
 
     private Action<NPC> cbOnStartTalkToNPC;
     private Action<Combatant> cbOnStartCombat;
@@ -36,8 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // This is currently starting the game in the safe world
-        isOnSurface = true;
+        // This is starting the game on the surface
+        IsOnSurface = true;
         currentOffset = surfaceOffset;
 
         movementDisabled = true;
@@ -210,7 +211,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        cbOnFlip?.Invoke();
+        cbOnStartFlip?.Invoke();
         StartCoroutine(LerpToFlip());
     }
 
@@ -333,17 +334,11 @@ public class PlayerController : MonoBehaviour
         transform.position = roundedPos;
         isMoving = false;
 
-        // Switch surface data
-        if (isOnSurface)
-        {
-            currentOffset = dungeonOffset;
-        }
-        else
-        {
-            currentOffset = surfaceOffset;
-        }
         // Switch boolean
-        isOnSurface = !isOnSurface;
+        IsOnSurface = !IsOnSurface;
+        // Switch surface data
+        currentOffset = IsOnSurface ? surfaceOffset : dungeonOffset;
+        cbOnEndFlip?.Invoke();
     }
 
     /// <summary>
@@ -450,14 +445,24 @@ public class PlayerController : MonoBehaviour
         cbOnRotate -= callbackfunc;
     }
 
-    public void RegisterOnFlip(Action callbackfunc)
+    public void RegisterOnStartFlip(Action callbackfunc)
     {
-        cbOnFlip += callbackfunc;
+        cbOnStartFlip += callbackfunc;
     }
 
-    public void UnregisterOnFlip(Action callbackfunc)
+    public void UnregisterOnStartFlip(Action callbackfunc)
     {
-        cbOnFlip -= callbackfunc;
+        cbOnStartFlip -= callbackfunc;
+    }
+
+    public void RegisterOnEndFlip(Action callbackfunc)
+    {
+        cbOnEndFlip += callbackfunc;
+    }
+
+    public void UnregisterOnEndFlip(Action callbackfunc)
+    {
+        cbOnEndFlip -= callbackfunc;
     }
 
     public void RegisterOnStartTalkToNPC(Action<NPC> callbackfunc)
