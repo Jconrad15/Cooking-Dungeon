@@ -2173,7 +2173,7 @@ GameObject:
   - component: {fileID: 4324894075052843785}
   - component: {fileID: 7039982392400180119}
   m_Layer: 5
-  m_Name: Board (4)
+  m_Name: BoardDead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
