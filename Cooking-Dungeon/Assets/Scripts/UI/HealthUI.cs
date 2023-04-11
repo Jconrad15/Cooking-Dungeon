@@ -72,7 +72,7 @@ public class HealthUI : MonoBehaviour
 
     private void SetHearts(int heartCount)
     {
-        if (heartCount == 0)
+        if (heartCount <= 0)
         {
             SetBoard(boards.Length - 1);
             return;
