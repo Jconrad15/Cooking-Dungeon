@@ -14,11 +14,11 @@ public class LightingController : MonoBehaviour
     private void Start()
     {
         pc = FindAnyObjectByType<PlayerController>();
-        pc.RegisterOnEndFlip(OnEndFlip);
+        pc.RegisterOnMidFlip(OnMidFlip);
         SwitchLightingTo(pc.IsOnSurface);
     }
 
-    private void OnEndFlip()
+    private void OnMidFlip()
     {
         SwitchLightingTo(pc.IsOnSurface);
     }

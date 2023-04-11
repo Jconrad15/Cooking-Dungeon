@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private Action cbOnRotate;
     private Action cbOnStartFlip;
     private Action cbOnEndFlip;
+    private Action cbOnMidFlip;
 
     private Action<NPC> cbOnStartTalkToNPC;
     private Action<Combatant> cbOnStartCombat;
@@ -322,6 +323,14 @@ public class PlayerController : MonoBehaviour
             timeElapsed += Time.deltaTime;
 
             transform.rotation = newRotation;
+
+            // Check if mid flip
+            if(Mathf.Abs(transform.rotation.z) == 90 ||
+               Mathf.Abs(transform.rotation.z) == 270)
+            {
+                cbOnMidFlip?.Invoke();
+            }
+
             yield return null;
         }
 
@@ -453,6 +462,16 @@ public class PlayerController : MonoBehaviour
     public void UnregisterOnStartFlip(Action callbackfunc)
     {
         cbOnStartFlip -= callbackfunc;
+    }
+
+    public void RegisterOnMidFlip(Action callbackfunc)
+    {
+        cbOnMidFlip += callbackfunc;
+    }
+
+    public void UnregisterOnMidFlip(Action callbackfunc)
+    {
+        cbOnMidFlip -= callbackfunc;
     }
 
     public void RegisterOnEndFlip(Action callbackfunc)
