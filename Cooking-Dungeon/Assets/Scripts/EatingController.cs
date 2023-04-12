@@ -34,7 +34,7 @@ public class EatingController : MonoBehaviour
 
         ApplyMealEffects(mealData);
 
-        return false;
+        return true;
     }
 
     private void ApplyIngredientEffects(IngredientData ingredientData)
