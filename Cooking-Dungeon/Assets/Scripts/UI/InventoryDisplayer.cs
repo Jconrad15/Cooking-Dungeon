@@ -51,7 +51,10 @@ public class InventoryDisplayer : MonoBehaviour
         CreateIngredients();
         CreateMeals();
 
-        inventoryObjectsArea.SetActive(true);
+        if (inventoryObjectsArea.TryGetComponent(out Fade fade))
+        {
+            fade.FadeIn();
+        }
     }
 
     public void HideInventory()
@@ -59,7 +62,10 @@ public class InventoryDisplayer : MonoBehaviour
         isVisible = false;
 
         CleanUI();
-        inventoryObjectsArea.SetActive(false);
+        if (inventoryObjectsArea.TryGetComponent(out Fade fade))
+        {
+            fade.FadeOut();
+        }
     }
 
     private void CreateIngredients()

@@ -561,6 +561,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8788514620280323092}
+  - component: {fileID: 5226315159366846460}
+  - component: {fileID: 1011711409915948873}
   m_Layer: 5
   m_Name: InventoryObjectsArea
   m_TagString: Untagged
@@ -591,6 +593,30 @@ RectTransform:
   m_AnchoredPosition: {x: -439, y: 0}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5226315159366846460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975356390581949937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214342b956ecfc44fb0a42fe8c4e9e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &1011711409915948873
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975356390581949937}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4019229557801936791
 GameObject:
   m_ObjectHideFlags: 0
