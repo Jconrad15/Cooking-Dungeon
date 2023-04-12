@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 8102328394211994608}
   - component: {fileID: 1920223872610848141}
   - component: {fileID: 1214149386279166366}
+  - component: {fileID: 5710063229541279116}
   - component: {fileID: 2063917397025803672}
   m_Layer: 0
   m_Name: Player
@@ -628,6 +629,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients: []
   meals: []
+--- !u!114 &5710063229541279116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588452150502137977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669cd238f06eac946a139d40fd9968ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &2063917397025803672
 Animator:
   serializedVersion: 5

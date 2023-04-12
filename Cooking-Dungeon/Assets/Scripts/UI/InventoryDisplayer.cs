@@ -17,8 +17,7 @@ public class InventoryDisplayer : MonoBehaviour
     private GameObject mealPrefab;
 
     private Inventory inventory;
-    private Health playerHealth;
-    private Combatant playerCombatant;
+    private EatingController eatingController;
 
     private List<GameObject> createdGOs;
 
@@ -29,8 +28,7 @@ public class InventoryDisplayer : MonoBehaviour
         createdGOs = new List<GameObject>();
         inventory = FindAnyObjectByType<Inventory>();
         PlayerController pc = FindAnyObjectByType<PlayerController>();
-        playerHealth = pc.GetComponent<Health>();
-        playerCombatant = pc.GetComponent<Combatant>();
+        eatingController = pc.GetComponent<EatingController>();
         HideInventory();
     }
 
@@ -105,15 +103,10 @@ public class InventoryDisplayer : MonoBehaviour
     public void EatIngredientButton(
         IngredientUI ingredientUI, IngredientData ingredientData)
     {
-        if (inventory.TryRemoveIngredient(ingredientData) == false)
+        if (eatingController.TryEatIngredient(ingredientData) == false)
         {
             return;
         }
-
-        // Apply effects of ingredient
-        playerHealth.IncreaseMaxHealth(ingredientData.increaseMaxHealthAmount);
-        playerHealth.Heal(ingredientData.healAmount);
-
 
         createdGOs.Remove(ingredientUI.gameObject);
         Destroy(ingredientUI.gameObject);
@@ -122,15 +115,10 @@ public class InventoryDisplayer : MonoBehaviour
     public void EatMealButton(
         MealUI mealUI, MealData mealData)
     {
-        if (inventory.TryRemoveMeal(mealData) == false)
+        if (eatingController.TryEatMeal(mealData) == false)
         {
             return;
         }
-
-        // Apply effects of meal
-        playerCombatant.IncreaseDamageDealt(mealData.increaseDamageDealt);
-        playerHealth.IncreaseMaxHealth(mealData.increaseMaxHealthAmount);
-        playerHealth.Heal(mealData.healAmount);
 
         createdGOs.Remove(mealUI.gameObject);
         Destroy(mealUI.gameObject);
