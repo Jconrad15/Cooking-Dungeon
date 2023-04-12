@@ -39,6 +39,12 @@ public class Health : MonoBehaviour
         cbOnHealthChanged?.Invoke(currentHealth, true);
     }
 
+    public void HealAll()
+    {
+        currentHealth = maxHealth;
+        cbOnHealthChanged?.Invoke(currentHealth, true);
+    }
+
     public void IncreaseMaxHealth(int amount)
     {
         maxHealth += amount;

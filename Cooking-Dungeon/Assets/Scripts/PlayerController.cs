@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Action<Combatant> cbOnStartCombat;
     private Action<Ingredient> cbOnRunIntoItem;
     private Action<CookStation> cbOnStartCook;
+    private Action<Healer> cbOnRunIntoHealer;
 
     private LayerMask movementMask;
 
@@ -51,8 +52,9 @@ public class PlayerController : MonoBehaviour
 
     private void InitializeMovementMask()
     {
-        string[] layerNames = new string[6]
-        { "Wall", "NPC", "Enemy", "Ingredient", "CookStation", "Door" };
+        string[] layerNames = new string[7]
+        { "Wall", "NPC", "Enemy", "Ingredient",
+            "CookStation", "Door", "Healer" };
         movementMask = LayerMask.GetMask(layerNames);
     }
 
@@ -429,6 +431,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Blocked by door");
                 return false;
             }
+
+            if (other.TryGetComponent(out Healer healer))
+            {
+                Debug.Log("Blocked by Healer");
+                cbOnRunIntoHealer?.Invoke(healer);
+                return false;
+            }
         }
 
         return true;
@@ -522,5 +531,15 @@ public class PlayerController : MonoBehaviour
     public void UnregisterOnStartCook(Action<CookStation> callbackfunc)
     {
         cbOnStartCook -= callbackfunc;
+    }
+
+    public void RegisterOnRunIntoHealer(Action<Healer> callbackfunc)
+    {
+        cbOnRunIntoHealer += callbackfunc;
+    }
+
+    public void UnregisterOnRunIntoHealer(Action<Healer> callbackfunc)
+    {
+        cbOnRunIntoHealer -= callbackfunc;
     }
 }
