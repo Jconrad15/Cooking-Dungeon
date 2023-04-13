@@ -5,7 +5,7 @@ public class HealthEnemyUI : MonoBehaviour
     private Health enemyHealth;
 
     [SerializeField]
-    private GameObject[] hearts;
+    private Heart[] hearts;
 
     private void Start()
     {
@@ -26,14 +26,40 @@ public class HealthEnemyUI : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < heartCount; i++)
+        for (int i = 0; i < hearts.Length; i++)
         {
-            hearts[i].SetActive(true);
+            int amount;
+
+            if (heartCount >= 4)
+            {
+                amount = 4;
+                heartCount -= amount;
+            }
+            else if (heartCount == 3)
+            {
+                amount = 3;
+                heartCount -= amount;
+            }
+            else if (heartCount == 2)
+            {
+                amount = 2;
+                heartCount -= amount;
+            }
+            else if (heartCount == 1)
+            {
+                amount = 1;
+                heartCount -= amount;
+            }
+            else
+            {
+                amount = 0;
+                heartCount -= amount;
+            }
+
+            hearts[i].SetPortions(amount);
+
         }
-        for (int i = heartCount; i < hearts.Length; i++)
-        {
-            hearts[i].SetActive(false);
-        }
+
     }
 
 }
