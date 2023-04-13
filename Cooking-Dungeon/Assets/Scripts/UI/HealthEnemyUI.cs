@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class HealthEnemyUI : MonoBehaviour
@@ -7,8 +6,6 @@ public class HealthEnemyUI : MonoBehaviour
 
     [SerializeField]
     private GameObject[] hearts;
-    [SerializeField]
-    private TextMeshProUGUI healthText;
 
     private void Start()
     {
@@ -20,8 +17,6 @@ public class HealthEnemyUI : MonoBehaviour
     private void OnHealthChanged(int newAmount, bool increased)
     {
         SetHearts(newAmount);
-        healthText.SetText(
-            newAmount.ToString() + "/" + enemyHealth.maxHealth);
     }
 
     private void SetHearts(int heartCount)
@@ -40,7 +35,5 @@ public class HealthEnemyUI : MonoBehaviour
             hearts[i].SetActive(false);
         }
     }
-
-
 
 }
