@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -400,6 +401,12 @@ public class PlayerController : MonoBehaviour
 
             if (other.TryGetComponent(out NPC npc))
             {
+                // Only talk forward
+                if (d != Direction.Forward)
+                {
+                    return false;
+                }
+
                 cbOnStartTalkToNPC?.Invoke(npc);
                 Debug.Log("TalkToNPC");
                 return false;
@@ -407,6 +414,12 @@ public class PlayerController : MonoBehaviour
 
             if (other.TryGetComponent(out Combatant combatant))
             {
+                // Only combat forward
+                if (d != Direction.Forward)
+                {
+                    return false;
+                }
+
                 cbOnStartCombat?.Invoke(combatant);
                 Debug.Log("StartCombat");
                 return false;
@@ -414,6 +427,12 @@ public class PlayerController : MonoBehaviour
 
             if (other.TryGetComponent(out Ingredient ingredient))
             {
+                // Only collect item forward
+                if (d != Direction.Forward)
+                {
+                    return false;
+                }
+
                 cbOnRunIntoItem?.Invoke(ingredient);
                 Debug.Log("RunIntoItem");
                 return false;
@@ -421,6 +440,12 @@ public class PlayerController : MonoBehaviour
 
             if (other.TryGetComponent(out CookStation CookStation))
             {
+                // Only cook forward
+                if (d != Direction.Forward)
+                {
+                    return false;
+                }
+
                 cbOnStartCook?.Invoke(CookStation);
                 Debug.Log("StartCooking");
                 return false;
@@ -434,6 +459,12 @@ public class PlayerController : MonoBehaviour
 
             if (other.TryGetComponent(out Healer healer))
             {
+                // Only heal forward
+                if (d != Direction.Forward)
+                {
+                    return false;
+                }
+
                 Debug.Log("Blocked by Healer");
                 cbOnRunIntoHealer?.Invoke(healer);
                 return false;
