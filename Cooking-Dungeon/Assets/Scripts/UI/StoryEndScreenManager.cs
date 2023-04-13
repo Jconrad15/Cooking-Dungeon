@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class StoryEndScreenManager : MonoBehaviour
 {
-    private KeyCode nextButton = KeyCode.Space;
-
     [SerializeField]
     private GameObject[] endStoryImages;
 
@@ -13,14 +11,13 @@ public class StoryEndScreenManager : MonoBehaviour
 
     public void Init()
     {
-        HideAll();
         currentIndex = 0;
         Show(currentIndex);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(nextButton))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.DialogueNextKey))
         {
             if (currentIndex == 0)
             {
@@ -59,6 +56,7 @@ public class StoryEndScreenManager : MonoBehaviour
 
     private void Show(int index)
     {
+        HideAll();
         endStoryImages[index].SetActive(true);
     }
 

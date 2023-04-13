@@ -20,7 +20,7 @@ public class EndGameTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(InputKeyCodes.Instance.EndGameKey))
         {
             TriggerEnd();
         }
@@ -37,6 +37,7 @@ public class EndGameTrigger : MonoBehaviour
         GameObject endScreens = Instantiate(
             storyEndScreensPrefab, canvas.transform);
         endScreens.GetComponent<StoryEndScreenManager>().Init();
+        Destroy(gameObject);
     }
 
 }

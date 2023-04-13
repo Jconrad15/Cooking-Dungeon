@@ -49,6 +49,10 @@ public class InputKeyCodes : MonoBehaviour
 
     public KeyCode EscapeKey => KeyCode.Escape;
 
+    [SerializeField]
+    private KeyCode endGameKey = KeyCode.P;
+    public KeyCode EndGameKey => endGameKey;
+
     // Make singleton
     public static InputKeyCodes Instance;
     private void Awake()
