@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cook: {fileID: 8300000, guid: 2165e26e630cb2143ad574deedc0396a, type: 3}
-  failToCook: {fileID: 8300000, guid: b37b0e9a0aa31724c8e3ef1b9f27116f, type: 3}
+  failToCook: {fileID: 8300000, guid: 979680542ddcc92469e81f8f18015728, type: 3}
 --- !u!82 &6446590307759830137
 AudioSource:
   m_ObjectHideFlags: 0
