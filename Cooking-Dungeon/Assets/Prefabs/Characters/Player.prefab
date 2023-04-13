@@ -48,10 +48,10 @@ MonoBehaviour:
   move: {fileID: 8300000, guid: ef8c1b816ab0534499a6caa479737841, type: 3}
   flip: {fileID: 8300000, guid: 721c08b4043bbd14e9f18068acdfdeab, type: 3}
   rotate: {fileID: 8300000, guid: cba8d8f6e7c5cd84fa918e71d2a90ff6, type: 3}
-  runIntoItem: {fileID: 8300000, guid: ded53d491507c6c40b2fa5e353ffbedc, type: 3}
-  startCombat: {fileID: 8300000, guid: 27cd1aef9791834458b836dd6c887b69, type: 3}
+  runIntoItem: {fileID: 8300000, guid: d04645b24cab56b42be95f26ca2ae844, type: 3}
+  startCombat: {fileID: 8300000, guid: 6f4d18a7fca9c1f4eb045f4cdad6073d, type: 3}
   startTalkToNPC: {fileID: 8300000, guid: b1972d029e5c56f49a7fee637f0810a8, type: 3}
-  attack: {fileID: 8300000, guid: 386b38052db9d78468f55bfaffa405f3, type: 3}
+  attack: {fileID: 8300000, guid: 7a899f6514c0da84da86a09c3aa606b1, type: 3}
   hurt: {fileID: 8300000, guid: 81606c87878e4164a8b9f32e198cc13a, type: 3}
   heal: {fileID: 8300000, guid: 6262c7cb69c8cc94c91aa335acc406e5, type: 3}
 --- !u!82 &2187656764275558406

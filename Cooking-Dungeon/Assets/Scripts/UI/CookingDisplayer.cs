@@ -6,6 +6,7 @@ public class CookingDisplayer : MonoBehaviour
 {
     private Action cbOnCooked;
     private Action cbOnFailedToCook;
+    private Action cbOnLeaveCookingStation;
 
     private PlayerController playerController;
     private InventoryController inventoryController;
@@ -51,6 +52,7 @@ public class CookingDisplayer : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         Debug.Log("Cooking Done");
         HideCookUI();
+        cbOnLeaveCookingStation?.Invoke();
         playerController.EnableMovement();
     }
 
@@ -115,5 +117,15 @@ public class CookingDisplayer : MonoBehaviour
     public void UnregisterOnFailedToCook(Action callbackfunc)
     {
         cbOnFailedToCook -= callbackfunc;
+    }
+
+    public void RegisterOnLeaveCookingStation(Action callbackfunc)
+    {
+        cbOnLeaveCookingStation += callbackfunc;
+    }
+
+    public void UnregisterOnLeaveCookingStation(Action callbackfunc)
+    {
+        cbOnLeaveCookingStation -= callbackfunc;
     }
 }
