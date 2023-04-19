@@ -14,6 +14,7 @@ public class CombatSystem : MonoBehaviour
     private Action cbOnFailedBlock;
     private Action cbOnAttack;
     private Action cbOnFailedAttack;
+    private Action<CombatAction> cbOnCurrentActionChanged;
     
     // Start with combatBox off
     private void Start()
@@ -36,7 +37,7 @@ public class CombatSystem : MonoBehaviour
 
         Queue<CombatAction> actions = otherCombatant.GetCombatActions();
         CombatAction currentAction = actions.Dequeue();
-        Debug.Log(currentAction.ToString());
+        cbOnCurrentActionChanged?.Invoke(currentAction);
 
         // Combat goes here
         bool combatDone = false;
@@ -56,7 +57,7 @@ public class CombatSystem : MonoBehaviour
             if (CheckPlayerInput(otherCombatant, currentAction))
             {
                 currentAction = actions.Dequeue();
-                Debug.Log(currentAction.ToString());
+                cbOnCurrentActionChanged?.Invoke(currentAction);
                 yield return new WaitForEndOfFrame();
             }
 
@@ -96,13 +97,13 @@ public class CombatSystem : MonoBehaviour
             case CombatAction.Block:
                 // Tried to attack when needed to block
                 cbOnFailedBlock?.Invoke();
-                playerCombatant.health.Hurt(otherCombatant.damageDealt);
+                otherCombatant.Attack(playerCombatant);
                 break;
 
             case CombatAction.Attack:
                 // Tried to attack when needed to attack
                 cbOnAttack?.Invoke();
-                otherCombatant.health.Hurt(playerCombatant.damageDealt);
+                playerCombatant.Attack(otherCombatant);
                 break;
         }
     }
@@ -169,6 +170,7 @@ public class CombatSystem : MonoBehaviour
     {
         cbOnAttack -= callbackfunc;
     }
+
     public void RegisterOnFailedAttack(Action callbackfunc)
     {
         cbOnFailedAttack += callbackfunc;
@@ -179,4 +181,13 @@ public class CombatSystem : MonoBehaviour
         cbOnFailedAttack -= callbackfunc;
     }
 
+    public void RegisterOnCurrentActionChanged(Action<CombatAction> callbackfunc)
+    {
+        cbOnCurrentActionChanged += callbackfunc;
+    }
+
+    public void UnregisterOnCurrentActionChanged(Action<CombatAction> callbackfunc)
+    {
+        cbOnCurrentActionChanged -= callbackfunc;
+    }
 }
