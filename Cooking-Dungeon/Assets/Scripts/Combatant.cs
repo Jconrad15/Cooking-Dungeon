@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Combatant : MonoBehaviour
@@ -14,6 +15,9 @@ public class Combatant : MonoBehaviour
 
     [SerializeField]
     private GameObject droppedIngredientPrefab;
+
+    [SerializeField]
+    private CombatAction[] combatPattern;
 
     private void Start()
     {
@@ -48,6 +52,16 @@ public class Combatant : MonoBehaviour
             iFaceCamera.SetIsOnSurface(
                 combatantFaceCamera.CheckIsOnSurface());
         }
+    }
+
+    public Queue<CombatAction> GetCombatActions()
+    {
+        Queue<CombatAction> actions = new Queue<CombatAction>();
+        for (int i = 0; i < combatPattern.Length; i++)
+        {
+            actions.Enqueue(combatPattern[i]);
+        }
+        return actions;
     }
 
     public void IncreaseDamageDealt(int increaseAmount)
