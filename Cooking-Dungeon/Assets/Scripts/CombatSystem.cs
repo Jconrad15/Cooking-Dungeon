@@ -36,23 +36,31 @@ public class CombatSystem : MonoBehaviour
 
         Queue<CombatAction> actions = otherCombatant.GetCombatActions();
         CombatAction currentAction = actions.Dequeue();
+        Debug.Log(currentAction.ToString());
 
         // Combat goes here
         bool combatDone = false;
         while (combatDone == false)
         {
-            if (CheckCombatOver(otherCombatant, actions))
+            if (CheckCombatOver(otherCombatant))
             {
                 combatDone = true;
                 break;
             }
 
+            if (actions.Count == 0)
+            {
+                actions = otherCombatant.GetCombatActions();
+            }
+
             if (CheckPlayerInput(otherCombatant, currentAction))
             {
                 currentAction = actions.Dequeue();
+                Debug.Log(currentAction.ToString());
+                yield return new WaitForEndOfFrame();
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         yield return new WaitForSeconds(0.1f);
@@ -116,22 +124,10 @@ public class CombatSystem : MonoBehaviour
         }
     }
 
-    private bool CheckCombatOver(
-        Combatant otherCombatant,
-        Queue<CombatAction> actions)
+    private bool CheckCombatOver(Combatant otherCombatant)
     {
         // Check if player or otherCombatant died
-        if (playerCombatant == null || otherCombatant == null)
-        {
-            return true;
-        }
-
-        if (actions.Count == 0)
-        {
-            return true;
-        }
-
-        return false;
+        return playerCombatant == null || otherCombatant == null;
     }
 
     public void RegisterOnCombatDone(Action callbackfunc)
