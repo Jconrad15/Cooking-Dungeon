@@ -7,6 +7,8 @@ public class CombatUI : MonoBehaviour
     private TextMeshProUGUI text;
     [SerializeField]
     private GameObject combatUI;
+    [SerializeField]
+    private CombatActionDisplayer combatActionDisplayer;
 
     // Start with combatBox off
     private void Start()
@@ -14,8 +16,11 @@ public class CombatUI : MonoBehaviour
         FindAnyObjectByType<PlayerController>()
             .RegisterOnStartCombat(NewCombat);
 
-        FindAnyObjectByType<CombatSystem>()
-            .RegisterOnCombatDone(OnCombatDone);
+        CombatSystem cs = FindAnyObjectByType<CombatSystem>();
+        cs.RegisterOnCombatDone(OnCombatDone);
+        cs.RegisterOnCurrentActionChanged(OnCurrentActionChanged);
+
+
 
         combatUI.SetActive(false);
     }
@@ -44,6 +49,12 @@ public class CombatUI : MonoBehaviour
     private void HideCombatUI()
     {
         combatUI.SetActive(false);
+    }
+
+    private void OnCurrentActionChanged(CombatAction action)
+    {
+        //Debug.Log(action.ToString());
+        combatActionDisplayer.SetCurrentAction(action);
     }
 
 }
