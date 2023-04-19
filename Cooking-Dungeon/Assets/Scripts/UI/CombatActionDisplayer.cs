@@ -1,29 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatActionDisplayer : MonoBehaviour
 {
     [SerializeField]
-    private GameObject shield;
-    [SerializeField]
-    private GameObject sword;
+    private GameObject combatActionPrefab;
 
-    public void SetCurrentAction(CombatAction action)
+    [SerializeField]
+    private Sprite shield;
+    [SerializeField]
+    private Sprite sword;
+
+    private GameObject previousAction;
+    private GameObject previousNextAction;
+
+    public void SetActions(
+        CombatAction action, CombatAction nextAction)
     {
-        switch (action)
+        Destroy(previousAction);
+        MoveActions(action);
+        CreateNewNextAction(nextAction);
+    }
+
+    private void MoveActions(CombatAction action)
+    {
+        if (previousNextAction == null)
+        {
+            previousNextAction = Instantiate(combatActionPrefab, transform);
+        }
+
+        SetSprite(previousNextAction, action);
+
+        Animator a = previousNextAction.GetComponent<Animator>();
+        a.SetTrigger("Next");
+        previousAction = Instantiate(previousNextAction);
+    }
+
+    private void CreateNewNextAction(CombatAction nextAction)
+    {
+        Destroy(previousNextAction);
+        previousNextAction = Instantiate(combatActionPrefab, transform);
+        SetSprite(previousNextAction, nextAction);
+    }
+
+    private void SetSprite(GameObject GO, CombatAction a)
+    {
+        switch (a)
         {
             case CombatAction.Block:
-                shield.SetActive(true);
-                sword.SetActive(false);
+                GO.GetComponent<Image>().sprite = shield;
                 break;
 
             case CombatAction.Attack:
-                shield.SetActive(false);
-                sword.SetActive(true);
+                GO.GetComponent<Image>().sprite = sword;
+                break;
+
+            case CombatAction.Done:
+                GO.GetComponent<Image>().sprite = null;
                 break;
         }
-
     }
-
 }
