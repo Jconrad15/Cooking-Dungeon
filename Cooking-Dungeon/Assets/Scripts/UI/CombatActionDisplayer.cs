@@ -1,66 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CombatActionDisplayer : MonoBehaviour
 {
     [SerializeField]
-    private GameObject combatActionPrefab;
+    private GameObject currentSword;
+    [SerializeField]
+    private GameObject nextSword;
 
     [SerializeField]
-    private Sprite shield;
+    private GameObject currentShield;
     [SerializeField]
-    private Sprite sword;
+    private GameObject nextShield;
 
-    private GameObject previousAction;
-    private GameObject previousNextAction;
+    private void Start()
+    {
+        TurnOffAll();
+    }
+
+    private void TurnOffAll()
+    {
+        currentSword.SetActive(false);
+        nextSword.SetActive(false);
+        nextShield.SetActive(false);
+        currentShield.SetActive(false);
+    }
 
     public void SetActions(
         CombatAction action, CombatAction nextAction)
     {
-        Destroy(previousAction);
-        MoveActions(action);
-        CreateNewNextAction(nextAction);
-    }
+        TurnOffAll();
 
-    private void MoveActions(CombatAction action)
-    {
-        if (previousNextAction == null)
-        {
-            previousNextAction = Instantiate(combatActionPrefab, transform);
-        }
-
-        SetSprite(previousNextAction, action);
-
-        Animator a = previousNextAction.GetComponent<Animator>();
-        a.SetTrigger("Next");
-        previousAction = Instantiate(previousNextAction);
-    }
-
-    private void CreateNewNextAction(CombatAction nextAction)
-    {
-        Destroy(previousNextAction);
-        previousNextAction = Instantiate(combatActionPrefab, transform);
-        SetSprite(previousNextAction, nextAction);
-    }
-
-    private void SetSprite(GameObject GO, CombatAction a)
-    {
-        switch (a)
+        switch (action)
         {
             case CombatAction.Block:
-                GO.GetComponent<Image>().sprite = shield;
+                currentShield.SetActive(true);
                 break;
 
             case CombatAction.Attack:
-                GO.GetComponent<Image>().sprite = sword;
+                currentSword.SetActive(true);
                 break;
 
             case CombatAction.Done:
-                GO.GetComponent<Image>().sprite = null;
+                break;
+        }
+
+        switch (nextAction)
+        {
+            case CombatAction.Block:
+                nextShield.SetActive(true);
+                break;
+
+            case CombatAction.Attack:
+                nextSword.SetActive(true);
+                break;
+
+            case CombatAction.Done:
                 break;
         }
     }
+
+
+
 }

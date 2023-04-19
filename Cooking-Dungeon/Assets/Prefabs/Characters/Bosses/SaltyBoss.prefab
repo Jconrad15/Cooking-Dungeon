@@ -105,7 +105,7 @@ MonoBehaviour:
   combatantName: 
   health: {fileID: 2437176002597608007}
   droppedIngredientPrefab: {fileID: 5553807133678367505, guid: 9591146484da6cb4fa6aa0d015f4ac63, type: 3}
-  combatPattern: 000000000100000002000000
+  combatPattern: 000000000100000001000000000000000100000002000000
 --- !u!95 &2474764327500242595
 Animator:
   serializedVersion: 5
