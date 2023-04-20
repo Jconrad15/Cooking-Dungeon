@@ -5,25 +5,62 @@ using UnityEngine;
 public class CombatActionDisplayer : MonoBehaviour
 {
     [SerializeField]
-    private GameObject shield;
+    private GameObject currentSword;
     [SerializeField]
-    private GameObject sword;
+    private GameObject nextSword;
 
-    public void SetCurrentAction(CombatAction action)
+    [SerializeField]
+    private GameObject currentShield;
+    [SerializeField]
+    private GameObject nextShield;
+
+    private void Start()
     {
+        TurnOffAll();
+    }
+
+    private void TurnOffAll()
+    {
+        currentSword.SetActive(false);
+        nextSword.SetActive(false);
+        nextShield.SetActive(false);
+        currentShield.SetActive(false);
+    }
+
+    public void SetActions(
+        CombatAction action, CombatAction nextAction)
+    {
+        TurnOffAll();
+
         switch (action)
         {
             case CombatAction.Block:
-                shield.SetActive(true);
-                sword.SetActive(false);
+                currentShield.SetActive(true);
                 break;
 
             case CombatAction.Attack:
-                shield.SetActive(false);
-                sword.SetActive(true);
+                currentSword.SetActive(true);
+                break;
+
+            case CombatAction.Done:
                 break;
         }
 
+        switch (nextAction)
+        {
+            case CombatAction.Block:
+                nextShield.SetActive(true);
+                break;
+
+            case CombatAction.Attack:
+                nextSword.SetActive(true);
+                break;
+
+            case CombatAction.Done:
+                break;
+        }
     }
+
+
 
 }

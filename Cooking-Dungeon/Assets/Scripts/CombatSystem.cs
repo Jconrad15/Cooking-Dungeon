@@ -14,7 +14,7 @@ public class CombatSystem : MonoBehaviour
     private Action cbOnFailedBlock;
     private Action cbOnAttack;
     private Action cbOnFailedAttack;
-    private Action<CombatAction> cbOnCurrentActionChanged;
+    private Action<CombatAction, CombatAction> cbOnCurrentActionChanged;
     
     // Start with combatBox off
     private void Start()
@@ -37,27 +37,39 @@ public class CombatSystem : MonoBehaviour
 
         Queue<CombatAction> actions = otherCombatant.GetCombatActions();
         CombatAction currentAction = actions.Dequeue();
-        cbOnCurrentActionChanged?.Invoke(currentAction);
+        CombatAction peek;
+        if (actions.Count > 0)
+        {
+            peek = actions.Peek();
+        }
+        else
+        {
+            peek = CombatAction.Done;
+        }
+        cbOnCurrentActionChanged?.Invoke(currentAction, peek);
 
         // Combat goes here
         bool combatDone = false;
         while (combatDone == false)
         {
-            if (CheckCombatOver(otherCombatant))
+            if (CheckCombatOver(otherCombatant, currentAction))
             {
                 combatDone = true;
                 break;
             }
 
-            if (actions.Count == 0)
-            {
-                actions = otherCombatant.GetCombatActions();
-            }
-
             if (CheckPlayerInput(otherCombatant, currentAction))
             {
                 currentAction = actions.Dequeue();
-                cbOnCurrentActionChanged?.Invoke(currentAction);
+                if (actions.Count > 0)
+                {
+                    peek = actions.Peek();
+                }
+                else
+                {
+                    peek = CombatAction.Done;
+                }
+                cbOnCurrentActionChanged?.Invoke(currentAction, peek);
                 yield return new WaitForEndOfFrame();
             }
 
@@ -125,9 +137,12 @@ public class CombatSystem : MonoBehaviour
         }
     }
 
-    private bool CheckCombatOver(Combatant otherCombatant)
+    private bool CheckCombatOver(
+        Combatant otherCombatant, CombatAction currentAction)
     {
         // Check if player or otherCombatant died
+        if (currentAction == CombatAction.Done) { return true; }
+
         return playerCombatant == null || otherCombatant == null;
     }
 
@@ -181,12 +196,14 @@ public class CombatSystem : MonoBehaviour
         cbOnFailedAttack -= callbackfunc;
     }
 
-    public void RegisterOnCurrentActionChanged(Action<CombatAction> callbackfunc)
+    public void RegisterOnCurrentActionChanged(
+        Action<CombatAction, CombatAction> callbackfunc)
     {
         cbOnCurrentActionChanged += callbackfunc;
     }
 
-    public void UnregisterOnCurrentActionChanged(Action<CombatAction> callbackfunc)
+    public void UnregisterOnCurrentActionChanged(
+        Action<CombatAction, CombatAction> callbackfunc)
     {
         cbOnCurrentActionChanged -= callbackfunc;
     }

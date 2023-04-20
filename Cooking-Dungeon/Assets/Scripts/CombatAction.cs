@@ -1,5 +1,6 @@
 public enum CombatAction
 {
     Block,
-    Attack
+    Attack,
+    Done
 }

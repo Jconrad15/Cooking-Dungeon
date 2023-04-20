@@ -20,8 +20,6 @@ public class CombatUI : MonoBehaviour
         cs.RegisterOnCombatDone(OnCombatDone);
         cs.RegisterOnCurrentActionChanged(OnCurrentActionChanged);
 
-
-
         combatUI.SetActive(false);
     }
 
@@ -51,10 +49,10 @@ public class CombatUI : MonoBehaviour
         combatUI.SetActive(false);
     }
 
-    private void OnCurrentActionChanged(CombatAction action)
+    private void OnCurrentActionChanged(
+        CombatAction action, CombatAction nextAction)
     {
-        //Debug.Log(action.ToString());
-        combatActionDisplayer.SetCurrentAction(action);
+        combatActionDisplayer.SetActions(action, nextAction);
     }
 
 }
